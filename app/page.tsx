@@ -55,6 +55,12 @@ const operations = [
     href: "/dashboard/settings",
     status: "Shared config",
     note: "Review global blocks, forms, SEO defaults, and integration placeholders."
+  },
+  {
+    title: "Preview",
+    href: "/preview",
+    status: "2 demo sites",
+    note: "Jump from the CMS into public-facing country-site previews generated from the same content model."
   }
 ];
 
@@ -146,7 +152,7 @@ export default function Home() {
         </article>
       </section>
 
-      <section className="dashboard-grid dashboard-grid--four">
+      <section className="dashboard-grid dashboard-grid--five">
         {operations.map((item) => (
           <Link key={item.title} href={item.href} className="dashboard-card dashboard-link-card dashboard-link-card--muted">
             <p className="dashboard-card__eyebrow">{item.status}</p>

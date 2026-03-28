@@ -131,7 +131,15 @@ export default function EventsDashboardPage() {
 
           {events.map((event) => (
             <article key={event.title} className="dashboard-events-table__row" role="row">
-              <span role="cell">{event.title}</span>
+              <span role="cell">
+                {event.title === "Spring open farm day" ? (
+                  <Link href="/dashboard/events/spring-open-farm-day" className="table-inline-link">
+                    {event.title}
+                  </Link>
+                ) : (
+                  event.title
+                )}
+              </span>
               <span role="cell">{event.site}</span>
               <span role="cell">{event.date}</span>
               <span role="cell">{event.time}</span>

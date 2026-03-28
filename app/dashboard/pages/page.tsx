@@ -126,7 +126,15 @@ export default function PagesDashboardPage() {
 
           {pageQueue.map((item) => (
             <article key={item.title} className="dashboard-pages-table__row" role="row">
-              <span role="cell">{item.title}</span>
+              <span role="cell">
+                {item.title === "Homepage refresh" ? (
+                  <Link href="/dashboard/pages/homepage-refresh" className="table-inline-link">
+                    {item.title}
+                  </Link>
+                ) : (
+                  item.title
+                )}
+              </span>
               <span role="cell">{item.site}</span>
               <span role="cell">{item.status}</span>
               <span role="cell">{item.locale}</span>

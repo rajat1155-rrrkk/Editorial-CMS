@@ -30,6 +30,7 @@ export default function RootLayout({
                 <Link href="/dashboard/media">Media</Link>
                 <Link href="/dashboard/sites">Sites</Link>
                 <Link href="/dashboard/settings">Settings</Link>
+                <Link href="/preview">Preview</Link>
               </nav>
             </div>
           </header>
@@ -49,6 +50,7 @@ export default function RootLayout({
                 <Link href="/dashboard/locales">Locales</Link>
                 <Link href="/dashboard/alerts">Alerts</Link>
                 <Link href="/platform">Platform</Link>
+                <Link href="/preview">Preview</Link>
                 <Link href="/architecture">Architecture</Link>
                 <Link href="/contact">Contact</Link>
               </div>

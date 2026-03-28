@@ -130,7 +130,15 @@ export default function PostsDashboardPage() {
 
           {postQueue.map((item) => (
             <article key={item.title} className="dashboard-posts-table__row" role="row">
-              <span role="cell">{item.title}</span>
+              <span role="cell">
+                {item.title === "Spring volunteer roundup" ? (
+                  <Link href="/dashboard/posts/spring-volunteer-roundup" className="table-inline-link">
+                    {item.title}
+                  </Link>
+                ) : (
+                  item.title
+                )}
+              </span>
               <span role="cell">{item.category}</span>
               <span role="cell">{item.site}</span>
               <span role="cell">{item.status}</span>
