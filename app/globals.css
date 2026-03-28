@@ -1,13 +1,19 @@
 :root {
-  --bg: #f4efe6;
-  --surface: rgba(255, 251, 245, 0.78);
-  --surface-strong: #fffaf2;
-  --ink: #1e2a26;
-  --muted: #5e6a65;
-  --accent: #0f766e;
-  --accent-deep: #12443e;
-  --line: rgba(30, 42, 38, 0.1);
-  --shadow: 0 22px 70px rgba(31, 44, 35, 0.12);
+  --bg: #f5faf4;
+  --bg-deep: #e5f1e8;
+  --surface: rgba(255, 255, 255, 0.84);
+  --surface-strong: #ffffff;
+  --surface-tint: rgba(236, 247, 239, 0.9);
+  --ink: #173128;
+  --muted: #5b7467;
+  --accent: #18845b;
+  --accent-strong: #0d6c47;
+  --accent-deep: #0a4c34;
+  --accent-soft: rgba(24, 132, 91, 0.12);
+  --line: rgba(23, 49, 40, 0.1);
+  --line-strong: rgba(23, 49, 40, 0.18);
+  --shadow: 0 26px 80px rgba(20, 62, 44, 0.12);
+  --shadow-soft: 0 14px 36px rgba(19, 61, 43, 0.08);
 }
 
 * {
@@ -23,10 +29,44 @@ body {
   min-height: 100vh;
   color: var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(15, 118, 110, 0.18), transparent 28%),
-    radial-gradient(circle at 85% 15%, rgba(212, 164, 82, 0.2), transparent 24%),
-    linear-gradient(180deg, #f8f4ec 0%, var(--bg) 54%, #efe6d5 100%);
-  font-family: Georgia, "Times New Roman", serif;
+    radial-gradient(circle at 8% 10%, rgba(24, 132, 91, 0.18), transparent 24%),
+    radial-gradient(circle at 92% 12%, rgba(91, 170, 116, 0.14), transparent 22%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 48%, var(--bg-deep) 100%);
+  font-family:
+    "Avenir Next",
+    "Segoe UI",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.01em;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(18px);
+}
+
+body::before {
+  top: 3rem;
+  left: -4rem;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  background: rgba(24, 132, 91, 0.12);
+}
+
+body::after {
+  right: -3rem;
+  bottom: 8rem;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 999px;
+  background: rgba(13, 108, 71, 0.08);
 }
 
 a {
@@ -36,6 +76,33 @@ a {
 
 .site-chrome {
   min-height: 100vh;
+  position: relative;
+}
+
+.site-chrome::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(24, 132, 91, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 132, 91, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 28%, transparent 88%);
+  opacity: 0.18;
+  z-index: -1;
+}
+
+h1,
+h2,
+h3,
+.brand-mark {
+  font-family:
+    "Iowan Old Style",
+    "Palatino Linotype",
+    "Book Antiqua",
+    Georgia,
+    serif;
 }
 
 .topbar {
@@ -57,18 +124,22 @@ a {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.95rem 1.1rem;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 999px;
-  background: rgba(255, 250, 242, 0.76);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 252, 248, 0.84));
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 18px 48px rgba(18, 56, 39, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .brand-mark {
-  font-size: 0.95rem;
+  color: var(--accent-deep);
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: none;
 }
 
 .topnav,
@@ -82,6 +153,25 @@ a {
 .footer-links a {
   color: var(--muted);
   font-size: 0.96rem;
+}
+
+.topnav a {
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.topnav a:hover,
+.footer-links a:hover {
+  color: var(--accent-deep);
+}
+
+.topnav a:hover {
+  background: rgba(24, 132, 91, 0.08);
+  transform: translateY(-1px);
 }
 
 .page-shell {
@@ -114,9 +204,12 @@ a {
 .footer-banner {
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: var(--surface);
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(249, 253, 250, 0.88));
+  backdrop-filter: blur(14px);
+  box-shadow:
+    var(--shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
 .hero-copy {
@@ -166,7 +259,7 @@ a {
 .eyebrow,
 .card-eyebrow {
   margin: 0 0 1rem;
-  color: var(--accent-deep);
+  color: var(--accent-strong);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -189,22 +282,26 @@ a {
   transition:
     transform 180ms ease,
     background-color 180ms ease,
-    color 180ms ease;
+    color 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
 }
 
 .primary-link {
   color: #f9fff8;
-  background: var(--accent-deep);
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent-deep));
+  box-shadow: 0 16px 36px rgba(13, 108, 71, 0.2);
 }
 
 .secondary-link {
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(24, 132, 91, 0.18);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .primary-link:hover,
 .secondary-link:hover {
   transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(16, 83, 56, 0.12);
 }
 
 .hero-panel {
@@ -220,8 +317,10 @@ a {
   min-height: 180px;
   padding: 1.4rem;
   border-radius: 22px;
-  background: var(--surface-strong);
-  border: 1px solid rgba(30, 42, 38, 0.08);
+  background:
+    linear-gradient(180deg, #ffffff, var(--surface-tint));
+  border: 1px solid rgba(23, 49, 40, 0.08);
+  box-shadow: var(--shadow-soft);
 }
 
 .metric-card span {
@@ -248,6 +347,21 @@ a {
 .roadmap-card,
 .footer-banner {
   padding: 1.6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before,
+.dashboard-card::before,
+.sites-card::before,
+.editor-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-strong), rgba(24, 132, 91, 0.1));
+  opacity: 0.9;
 }
 
 .feature-card h2,
@@ -347,9 +461,12 @@ a {
 .dashboard-media-table-shell {
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: var(--surface);
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 253, 249, 0.88));
+  backdrop-filter: blur(14px);
+  box-shadow:
+    var(--shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
 .dashboard-hero__copy,
@@ -462,6 +579,11 @@ a {
   border-radius: 999px;
   font-size: 0.95rem;
   font-weight: 700;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
 }
 
 .dashboard-button--primary,
@@ -471,7 +593,8 @@ a {
 .dashboard-events-button--primary,
 .dashboard-media-button--primary {
   color: #f9fff8;
-  background: var(--accent-deep);
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent-deep));
+  box-shadow: 0 14px 30px rgba(13, 108, 71, 0.18);
 }
 
 .dashboard-button--secondary,
@@ -480,8 +603,18 @@ a {
 .dashboard-posts-button--secondary,
 .dashboard-events-button--secondary,
 .dashboard-media-button--secondary {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(24, 132, 91, 0.18);
+}
+
+.dashboard-button:hover,
+.sites-button:hover,
+.dashboard-pages-button:hover,
+.dashboard-posts-button:hover,
+.dashboard-events-button:hover,
+.dashboard-media-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(14, 76, 51, 0.12);
 }
 
 .dashboard-metric,
@@ -492,8 +625,10 @@ a {
 .dashboard-media-metric {
   padding: 1.1rem 1.2rem;
   border-radius: 22px;
-  background: var(--surface-strong);
-  border: 1px solid rgba(30, 42, 38, 0.08);
+  background:
+    linear-gradient(180deg, #ffffff, var(--surface-tint));
+  border: 1px solid rgba(23, 49, 40, 0.08);
+  box-shadow: var(--shadow-soft);
 }
 
 .dashboard-metric p,
@@ -600,7 +735,7 @@ a {
 .dashboard-stage {
   padding: 1rem 1.05rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--line);
 }
 
@@ -627,7 +762,7 @@ a {
 
 .dashboard-card--accent {
   background:
-    linear-gradient(135deg, rgba(18, 68, 62, 0.92), rgba(15, 118, 110, 0.84)),
+    linear-gradient(135deg, rgba(10, 76, 52, 0.96), rgba(24, 132, 91, 0.86)),
     var(--surface);
   color: #f8fff6;
 }
@@ -649,11 +784,15 @@ a {
 
 .dashboard-link-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(15, 118, 110, 0.24);
+  border-color: rgba(24, 132, 91, 0.26);
+  box-shadow:
+    0 24px 44px rgba(16, 83, 56, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
 .dashboard-link-card--muted {
-  background: rgba(255, 253, 248, 0.72);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(243, 251, 246, 0.86));
 }
 
 .table-inline-link {
@@ -685,7 +824,7 @@ a {
   align-items: start;
   padding: 1rem 1.1rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--line);
 }
 
@@ -738,7 +877,7 @@ a {
   align-items: start;
   padding: 1rem 1.1rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--line);
 }
 
@@ -789,7 +928,7 @@ a {
   margin: 0;
   padding: 0.95rem 1rem;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.56);
+  background: rgba(255, 255, 255, 0.76);
   border: 1px solid var(--line);
 }
 
@@ -820,9 +959,12 @@ a {
 .editor-card {
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: var(--surface);
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 253, 249, 0.88));
+  backdrop-filter: blur(14px);
+  box-shadow:
+    var(--shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
 }
 
 .editor-hero__copy,
@@ -860,8 +1002,10 @@ a {
 .editor-meta-card {
   padding: 1rem 1.1rem;
   border-radius: 22px;
-  background: var(--surface-strong);
-  border: 1px solid rgba(30, 42, 38, 0.08);
+  background:
+    linear-gradient(180deg, #ffffff, var(--surface-tint));
+  border: 1px solid rgba(23, 49, 40, 0.08);
+  box-shadow: var(--shadow-soft);
 }
 
 .editor-meta-card span {
@@ -898,7 +1042,7 @@ a {
 
 .editor-card--accent {
   background:
-    linear-gradient(135deg, rgba(18, 68, 62, 0.92), rgba(15, 118, 110, 0.84)),
+    linear-gradient(135deg, rgba(10, 76, 52, 0.96), rgba(24, 132, 91, 0.86)),
     var(--surface);
   color: #f8fff6;
 }
@@ -917,7 +1061,7 @@ a {
 .editor-row {
   padding: 0.95rem 1rem;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.56);
+  background: rgba(255, 255, 255, 0.76);
   border: 1px solid var(--line);
 }
 
