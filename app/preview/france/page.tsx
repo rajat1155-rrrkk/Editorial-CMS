@@ -28,6 +28,18 @@ const homepageCards = [
   "Highlighted statistics and community impact"
 ];
 
+const franceSignals = [
+  { value: "34k", label: "Monthly public visits" },
+  { value: "18", label: "Featured regional programs" },
+  { value: "2", label: "Homepage languages" }
+];
+
+const francePillars = [
+  "Editorial warmth with a magazine-like homepage rhythm",
+  "Seasonal campaigns supported by reusable premium modules",
+  "Strong local events presence with clean public discoverability"
+];
+
 export default function FrancePreviewPage() {
   return (
     <main className="page-shell preview-country preview-france">
@@ -46,6 +58,14 @@ export default function FrancePreviewPage() {
           <Link href="/dashboard/pages" className="secondary-link">
             View page workspace
           </Link>
+        </div>
+        <div className="preview-signal-strip">
+          {franceSignals.map((item) => (
+            <article key={item.label} className="preview-signal-card">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -74,6 +94,20 @@ export default function FrancePreviewPage() {
               <h3>{story.title}</h3>
               <p>{story.summary}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-split preview-luxury-split">
+        <div className="section-header">
+          <p className="eyebrow">Editorial character</p>
+          <h2>A premium public identity shaped by storytelling and clarity.</h2>
+        </div>
+        <div className="checklist-card preview-luxury-card">
+          {francePillars.map((item) => (
+            <p key={item} className="check-item">
+              {item}
+            </p>
           ))}
         </div>
       </section>

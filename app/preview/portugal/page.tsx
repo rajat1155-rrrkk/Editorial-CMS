@@ -28,6 +28,18 @@ const homepageCards = [
   "Clear routes to contact and join the local network"
 ];
 
+const portugalSignals = [
+  { value: "21k", label: "Monthly public visits" },
+  { value: "9", label: "Membership guidance modules" },
+  { value: "2", label: "Homepage languages" }
+];
+
+const portugalPillars = [
+  "Elegant information hierarchy designed for practical conversion",
+  "Bright, trust-building sections for membership and first-visit guidance",
+  "Flexible campaign areas without losing calm visual discipline"
+];
+
 export default function PortugalPreviewPage() {
   return (
     <main className="page-shell preview-country preview-portugal">
@@ -46,6 +58,14 @@ export default function PortugalPreviewPage() {
           <Link href="/dashboard/posts" className="secondary-link">
             View post workspace
           </Link>
+        </div>
+        <div className="preview-signal-strip">
+          {portugalSignals.map((item) => (
+            <article key={item.label} className="preview-signal-card">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -74,6 +94,20 @@ export default function PortugalPreviewPage() {
               <h3>{story.title}</h3>
               <p>{story.summary}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-split preview-luxury-split">
+        <div className="section-header">
+          <p className="eyebrow">Experience direction</p>
+          <h2>A more polished, hospitality-led feel for public visitors.</h2>
+        </div>
+        <div className="checklist-card preview-luxury-card">
+          {portugalPillars.map((item) => (
+            <p key={item} className="check-item">
+              {item}
+            </p>
           ))}
         </div>
       </section>

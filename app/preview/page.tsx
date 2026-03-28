@@ -22,6 +22,12 @@ const previewHighlights = [
   "Structured sections that can later be powered by localized CMS entries"
 ];
 
+const previewSignals = [
+  { value: "2", label: "Live country previews" },
+  { value: "12", label: "Reusable public homepage modules" },
+  { value: "7", label: "Launch languages across the network" }
+];
+
 export default function PreviewIndexPage() {
   return (
     <main className="page-shell preview-index">
@@ -40,6 +46,14 @@ export default function PreviewIndexPage() {
           <Link href="/preview/france" className="secondary-link">
             Open France preview
           </Link>
+        </div>
+        <div className="preview-signal-strip">
+          {previewSignals.map((item) => (
+            <article key={item.label} className="preview-signal-card">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </article>
+          ))}
         </div>
       </section>
 
