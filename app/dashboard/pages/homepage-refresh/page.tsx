@@ -20,6 +20,12 @@ const workflowNotes = [
   "Shared alert banners can be toggled without reopening the page draft."
 ];
 
+const approvalRail = [
+  { label: "Content design", value: "Approved" },
+  { label: "Translation QA", value: "In progress" },
+  { label: "SEO review", value: "Drafted" }
+];
+
 export default function HomepageRefreshPage() {
   return (
     <main className="editor-shell">
@@ -102,6 +108,19 @@ export default function HomepageRefreshPage() {
             <li>Secondary CTA changed to support coordinator onboarding.</li>
           </ol>
         </article>
+      </section>
+
+      <section className="editor-card">
+        <p className="dashboard-card__eyebrow">Approval rail</p>
+        <h2>Luxury review cues for the final publish pass.</h2>
+        <div className="editor-approval-grid">
+          {approvalRail.map((item) => (
+            <div key={item.label} className="editor-approval-card">
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
       </section>
     </main>
   );

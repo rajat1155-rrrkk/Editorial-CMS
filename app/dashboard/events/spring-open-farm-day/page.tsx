@@ -14,6 +14,12 @@ const runOfShow = [
   "Closing CTA for volunteer signup and newsletter"
 ];
 
+const eventOperations = [
+  { label: "Public listing", value: "Synced" },
+  { label: "Carousel slot", value: "Featured" },
+  { label: "Reminder email", value: "Scheduled" }
+];
+
 export default function SpringOpenFarmDayPage() {
   return (
     <main className="editor-shell">
@@ -64,6 +70,19 @@ export default function SpringOpenFarmDayPage() {
             <li>Future API payload for external reuse</li>
           </ul>
         </article>
+      </section>
+
+      <section className="editor-card">
+        <p className="dashboard-card__eyebrow">Operations rail</p>
+        <h2>Premium event controls visible at a glance.</h2>
+        <div className="editor-approval-grid">
+          {eventOperations.map((item) => (
+            <div key={item.label} className="editor-approval-card">
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
       </section>
     </main>
   );

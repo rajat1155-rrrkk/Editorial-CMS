@@ -14,6 +14,12 @@ const editorialChecks = [
   "Related posts mapped for homepage slot"
 ];
 
+const publishRail = [
+  { label: "Author signoff", value: "Complete" },
+  { label: "Locale readiness", value: "1 of 2 ready" },
+  { label: "Homepage feature", value: "Reserved" }
+];
+
 export default function SpringVolunteerRoundupPage() {
   return (
     <main className="editor-shell">
@@ -81,6 +87,19 @@ export default function SpringVolunteerRoundupPage() {
           working CMS, this section would be the rich-text editor preview, with
           block controls and translation state shown alongside it.
         </p>
+      </section>
+
+      <section className="editor-card">
+        <p className="dashboard-card__eyebrow">Publish rail</p>
+        <h2>Signals used by editors before the story goes live.</h2>
+        <div className="editor-approval-grid">
+          {publishRail.map((item) => (
+            <div key={item.label} className="editor-approval-card">
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
       </section>
     </main>
   );
