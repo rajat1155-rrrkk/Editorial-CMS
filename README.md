@@ -1,11 +1,11 @@
 # Editorial CMS Showcase
 
-This repository contains a frontend-only sample website for a multi-site, multilingual editorial CMS concept. It is intentionally scoped as a public-facing showcase that can be deployed directly to Vercel while backend and CMS implementation are still to come.
+This repository contains a frontend-only MVP sample for a multi-site, multilingual editorial CMS. The root route now behaves like the working app home, with dashboard flows for pages, posts, events, media, locales, alerts, team access, site management, and shared settings.
 
 ## What it demonstrates
 
-- A clean product framing for a shared editorial platform serving multiple country sites
-- Mobile-first presentation for pages, editorial blocks, events, and publishing roles
+- A dashboard-first product framing for a shared editorial platform serving multiple country sites
+- Mobile-first MVP screens for pages, posts, events, media, alerts, locales, and publishing roles
 - A Vercel-friendly Next.js setup with server-rendered output
 - Positioning for future multilingual content, migration tooling, and API integrations
 

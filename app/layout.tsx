@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Editorial CMS Showcase",
   description:
-    "A Vercel-ready sample for a multilingual, multi-site editorial CMS platform."
+    "A Vercel-ready MVP sample for a multilingual, multi-site editorial CMS platform."
 };
 
 export default function RootLayout({
@@ -23,12 +23,13 @@ export default function RootLayout({
                 Editorial CMS
               </Link>
               <nav className="topnav" aria-label="Primary">
-                <Link href="/platform">Platform</Link>
-                <Link href="/about">About</Link>
-                <Link href="/blog">Blog</Link>
-                <Link href="/architecture">Architecture</Link>
-                <Link href="/dashboard">Dashboard</Link>
-                <Link href="/contact">Contact</Link>
+                <Link href="/">Workspace</Link>
+                <Link href="/dashboard/pages">Pages</Link>
+                <Link href="/dashboard/posts">Posts</Link>
+                <Link href="/dashboard/events">Events</Link>
+                <Link href="/dashboard/media">Media</Link>
+                <Link href="/dashboard/sites">Sites</Link>
+                <Link href="/dashboard/settings">Settings</Link>
               </nav>
             </div>
           </header>
@@ -43,10 +44,12 @@ export default function RootLayout({
                 </p>
               </div>
               <div className="footer-links" aria-label="Footer">
+                <Link href="/dashboard">Overview</Link>
+                <Link href="/dashboard/team">Team</Link>
+                <Link href="/dashboard/locales">Locales</Link>
+                <Link href="/dashboard/alerts">Alerts</Link>
                 <Link href="/platform">Platform</Link>
-                <Link href="/blog">Blog</Link>
                 <Link href="/architecture">Architecture</Link>
-                <Link href="/dashboard/sites">Sites</Link>
                 <Link href="/contact">Contact</Link>
               </div>
             </div>

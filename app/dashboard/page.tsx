@@ -38,6 +38,15 @@ const alertItems = [
   "Content ops: WordPress migration import for legacy posts is 80% complete."
 ];
 
+const workspaceLinks = [
+  { label: "Pages", href: "/dashboard/pages", detail: "Landing pages, policy pages, and reusable block layouts" },
+  { label: "Posts", href: "/dashboard/posts", detail: "News, blog entries, imports, and editorial review queues" },
+  { label: "Events", href: "/dashboard/events", detail: "Structured listings, homepage promos, and scheduling" },
+  { label: "Media", href: "/dashboard/media", detail: "Images, PDFs, campaign assets, and downloads" },
+  { label: "Team", href: "/dashboard/team", detail: "Editors, coordinators, and super-admin permissions" },
+  { label: "Settings", href: "/dashboard/settings", detail: "Global configuration, integrations, and shared defaults" }
+];
+
 export default function DashboardPage() {
   return (
     <main className="dashboard-shell">
@@ -129,6 +138,16 @@ export default function DashboardPage() {
             <li>Public-facing content can stay fast, indexable, and easy to share.</li>
           </ul>
         </article>
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--three">
+        {workspaceLinks.map((item) => (
+          <Link key={item.label} href={item.href} className="dashboard-card dashboard-link-card">
+            <p className="dashboard-card__eyebrow">Workspace section</p>
+            <h2>{item.label}</h2>
+            <p>{item.detail}</p>
+          </Link>
+        ))}
       </section>
     </main>
   );
