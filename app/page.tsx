@@ -79,6 +79,29 @@ const scopeSnapshot = [
   "Multi-site controls, multilingual content, media uploads, and future API-facing models"
 ];
 
+const supportingRoutes = [
+  {
+    title: "Public preview",
+    href: "/preview",
+    detail: "See how country-site homepages render from the same shared content model."
+  },
+  {
+    title: "Platform notes",
+    href: "/platform",
+    detail: "Review the product framing, block model, and multisite architecture."
+  },
+  {
+    title: "Architecture",
+    href: "/architecture",
+    detail: "Understand the frontend, editorial, operations, and integration layers."
+  },
+  {
+    title: "Project context",
+    href: "/about",
+    detail: "Keep the concept-story and positioning available without making it the main entry."
+  }
+];
+
 export default function Home() {
   return (
     <main className="dashboard-shell workspace-page">
@@ -158,6 +181,16 @@ export default function Home() {
             <p className="dashboard-card__eyebrow">{item.status}</p>
             <h2>{item.title}</h2>
             <p>{item.note}</p>
+          </Link>
+        ))}
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--four">
+        {supportingRoutes.map((item) => (
+          <Link key={item.title} href={item.href} className="dashboard-card dashboard-link-card">
+            <p className="dashboard-card__eyebrow">Supporting route</p>
+            <h2>{item.title}</h2>
+            <p>{item.detail}</p>
           </Link>
         ))}
       </section>
