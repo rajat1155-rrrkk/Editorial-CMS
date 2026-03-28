@@ -56,6 +56,8 @@ const schedulingNotes = [
   "Migration imports preserve historical events, but the editor still checks the final copy."
 ];
 
+const eventFilters = ["All events", "Upcoming", "Needs translation", "Online", "Published"];
+
 export default function EventsDashboardPage() {
   return (
     <main className="dashboard-events-shell">
@@ -118,6 +120,22 @@ export default function EventsDashboardPage() {
           <p className="dashboard-events-eyebrow">Event queue</p>
           <h2>Planned, scheduled, and published events across the network.</h2>
         </div>
+        <div className="dashboard-toolbar" aria-label="Event controls">
+          <div className="dashboard-filter-group">
+            {eventFilters.map((item, index) => (
+              <span
+                key={item}
+                className={`dashboard-filter-chip${index === 0 ? " dashboard-filter-chip--active" : ""}`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="dashboard-toolbar-meta">
+            <span>7 approvals pending</span>
+            <span>Homepage carousel synced</span>
+          </div>
+        </div>
 
         <div className="dashboard-events-table" role="table" aria-label="Event queue">
           <div className="dashboard-events-table__row dashboard-events-table__row--head" role="row">
@@ -143,7 +161,9 @@ export default function EventsDashboardPage() {
               <span role="cell">{event.site}</span>
               <span role="cell">{event.date}</span>
               <span role="cell">{event.time}</span>
-              <span role="cell">{event.status}</span>
+              <span role="cell">
+                <span className="dashboard-status-pill">{event.status}</span>
+              </span>
               <span role="cell">{event.type}</span>
             </article>
           ))}

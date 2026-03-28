@@ -62,6 +62,8 @@ const mediaRules = [
   "Accessibility checks ensure alt text and document labels are not skipped."
 ];
 
+const mediaFilters = ["All assets", "Images", "Documents", "Needs alt text", "Imported"];
+
 export default function MediaDashboardPage() {
   return (
     <main className="dashboard-media-shell">
@@ -123,6 +125,22 @@ export default function MediaDashboardPage() {
           <p className="dashboard-media-eyebrow">Asset queue</p>
           <h2>Uploaded files with status, site context, and editorial notes.</h2>
         </div>
+        <div className="dashboard-toolbar" aria-label="Media controls">
+          <div className="dashboard-filter-group">
+            {mediaFilters.map((item, index) => (
+              <span
+                key={item}
+                className={`dashboard-filter-chip${index === 0 ? " dashboard-filter-chip--active" : ""}`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="dashboard-toolbar-meta">
+            <span>Library sync complete</span>
+            <span>8 cleanup flags</span>
+          </div>
+        </div>
 
         <div className="dashboard-media-table" role="table" aria-label="Media queue">
           <div className="dashboard-media-table__row dashboard-media-table__row--head" role="row">
@@ -138,7 +156,9 @@ export default function MediaDashboardPage() {
               <span role="cell">{item.name}</span>
               <span role="cell">{item.site}</span>
               <span role="cell">{item.type}</span>
-              <span role="cell">{item.status}</span>
+              <span role="cell">
+                <span className="dashboard-status-pill">{item.status}</span>
+              </span>
               <span role="cell">{item.note}</span>
             </article>
           ))}

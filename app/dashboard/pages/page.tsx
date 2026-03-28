@@ -52,6 +52,8 @@ const reviewNotes = [
   "Page previews are rendered before publish so local coordinators can catch layout issues early."
 ];
 
+const pageFilters = ["All pages", "Ready for review", "Needs translation", "Scheduled", "Published"];
+
 export default function PagesDashboardPage() {
   return (
     <main className="dashboard-pages-shell">
@@ -114,6 +116,22 @@ export default function PagesDashboardPage() {
           <p className="dashboard-pages-eyebrow">Page queue</p>
           <h2>Drafts, translations, and publish states across the network.</h2>
         </div>
+        <div className="dashboard-toolbar" aria-label="Page controls">
+          <div className="dashboard-filter-group">
+            {pageFilters.map((item, index) => (
+              <span
+                key={item}
+                className={`dashboard-filter-chip${index === 0 ? " dashboard-filter-chip--active" : ""}`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="dashboard-toolbar-meta">
+            <span>Updated 12 minutes ago</span>
+            <span>18 sites in scope</span>
+          </div>
+        </div>
 
         <div className="dashboard-pages-table" role="table" aria-label="Page queue">
           <div className="dashboard-pages-table__row dashboard-pages-table__row--head" role="row">
@@ -136,7 +154,9 @@ export default function PagesDashboardPage() {
                 )}
               </span>
               <span role="cell">{item.site}</span>
-              <span role="cell">{item.status}</span>
+              <span role="cell">
+                <span className="dashboard-status-pill">{item.status}</span>
+              </span>
               <span role="cell">{item.locale}</span>
               <span role="cell">{item.note}</span>
             </article>

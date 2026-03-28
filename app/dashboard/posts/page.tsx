@@ -57,6 +57,8 @@ const contentBlocks = [
   "Metadata for author, locale, and publish date"
 ];
 
+const postFilters = ["All stories", "Scheduled", "Needs translation", "Migration", "Ready to publish"];
+
 export default function PostsDashboardPage() {
   return (
     <main className="dashboard-posts-shell">
@@ -117,6 +119,22 @@ export default function PostsDashboardPage() {
           <p className="dashboard-posts-eyebrow">Story queue</p>
           <h2>Posts moving through draft, translation, schedule, and migration states.</h2>
         </div>
+        <div className="dashboard-toolbar" aria-label="Post controls">
+          <div className="dashboard-filter-group">
+            {postFilters.map((item, index) => (
+              <span
+                key={item}
+                className={`dashboard-filter-chip${index === 0 ? " dashboard-filter-chip--active" : ""}`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="dashboard-toolbar-meta">
+            <span>3 editors online</span>
+            <span>Migration batch 03 open</span>
+          </div>
+        </div>
 
         <div className="dashboard-posts-table" role="table" aria-label="Post queue">
           <div className="dashboard-posts-table__row dashboard-posts-table__row--head" role="row">
@@ -141,7 +159,9 @@ export default function PostsDashboardPage() {
               </span>
               <span role="cell">{item.category}</span>
               <span role="cell">{item.site}</span>
-              <span role="cell">{item.status}</span>
+              <span role="cell">
+                <span className="dashboard-status-pill">{item.status}</span>
+              </span>
               <span role="cell">{item.language}</span>
               <span role="cell">{item.notes}</span>
             </article>
