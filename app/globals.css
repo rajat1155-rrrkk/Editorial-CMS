@@ -1,0 +1,271 @@
+:root {
+  --bg: #f4efe6;
+  --surface: rgba(255, 251, 245, 0.78);
+  --surface-strong: #fffaf2;
+  --ink: #1e2a26;
+  --muted: #5e6a65;
+  --accent: #0f766e;
+  --accent-deep: #12443e;
+  --line: rgba(30, 42, 38, 0.1);
+  --shadow: 0 22px 70px rgba(31, 44, 35, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(15, 118, 110, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(212, 164, 82, 0.2), transparent 24%),
+    linear-gradient(180deg, #f8f4ec 0%, var(--bg) 54%, #efe6d5 100%);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-shell {
+  width: min(1160px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.hero,
+.section-grid,
+.section-split,
+.footer-banner {
+  margin-top: 1.5rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+  gap: 1.2rem;
+}
+
+.hero-copy,
+.hero-panel,
+.feature-card,
+.checklist-card,
+.timeline-card,
+.roadmap-card,
+.footer-banner {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
+}
+
+.hero-copy {
+  padding: 3rem;
+}
+
+.hero-copy h1,
+.section-header h2,
+.feature-card h2,
+.footer-banner h2 {
+  margin: 0;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.hero-copy h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  max-width: 9ch;
+}
+
+.lede,
+.feature-card p,
+.timeline-card p,
+.roadmap-item,
+.footer-banner p,
+.check-item {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.lede {
+  max-width: 60ch;
+  margin: 1.6rem 0 0;
+}
+
+.eyebrow,
+.card-eyebrow {
+  margin: 0 0 1rem;
+  color: var(--accent-deep);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.primary-link,
+.secondary-link {
+  padding: 0.95rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.primary-link {
+  color: #f9fff8;
+  background: var(--accent-deep);
+}
+
+.secondary-link {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.primary-link:hover,
+.secondary-link:hover {
+  transform: translateY(-2px);
+}
+
+.hero-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.2rem;
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 180px;
+  padding: 1.4rem;
+  border-radius: 22px;
+  background: var(--surface-strong);
+  border: 1px solid rgba(30, 42, 38, 0.08);
+}
+
+.metric-card span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.metric-card strong {
+  margin-top: 0.85rem;
+  font-size: clamp(1.5rem, 4vw, 2.3rem);
+  line-height: 1.05;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.feature-card,
+.checklist-card,
+.roadmap-card,
+.footer-banner {
+  padding: 1.6rem;
+}
+
+.feature-card h2,
+.section-header h2,
+.footer-banner h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.section-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.section-header {
+  padding: 0.6rem 0.4rem;
+}
+
+.check-item,
+.roadmap-item {
+  margin: 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.check-item:first-child,
+.roadmap-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.timeline {
+  display: grid;
+  gap: 1rem;
+}
+
+.timeline-card {
+  padding: 1.4rem;
+}
+
+.timeline-card h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.35rem;
+}
+
+.footer-banner {
+  text-align: center;
+  padding: 2.4rem;
+}
+
+@media (max-width: 960px) {
+  .hero,
+  .section-split,
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 1.2rem, 100%);
+    padding-top: 0.6rem;
+  }
+
+  .hero-copy,
+  .hero-panel,
+  .feature-card,
+  .checklist-card,
+  .timeline-card,
+  .roadmap-card,
+  .footer-banner {
+    border-radius: 22px;
+  }
+
+  .hero-copy h1 {
+    max-width: 11ch;
+  }
+}
