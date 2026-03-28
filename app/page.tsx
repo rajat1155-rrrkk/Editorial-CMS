@@ -63,11 +63,11 @@ export default function Home() {
             public experience across a global network.
           </p>
           <div className="hero-actions">
-            <a href="#platform" className="primary-link">
+            <a href="/platform" className="primary-link">
               Explore the platform
             </a>
-            <a href="#roadmap" className="secondary-link">
-              View launch scope
+            <a href="/dashboard" className="secondary-link">
+              Open the dashboard sample
             </a>
           </div>
         </div>
@@ -138,6 +138,33 @@ export default function Home() {
             </p>
           ))}
         </div>
+      </section>
+
+      <section className="section-grid">
+        <article className="feature-card">
+          <p className="card-eyebrow">Information architecture</p>
+          <h2>Dedicated routes for product story, architecture, and admin views.</h2>
+          <p>
+            This expanded sample now supports a fuller navigation model with
+            room for public marketing pages and internal product storytelling.
+          </p>
+        </article>
+        <article className="feature-card">
+          <p className="card-eyebrow">Sample operations</p>
+          <h2>Dashboards make the multi-site value proposition tangible.</h2>
+          <p>
+            Admin-oriented screens help stakeholders imagine launch readiness,
+            editor permissions, and rollout visibility across multiple sites.
+          </p>
+        </article>
+        <article className="feature-card">
+          <p className="card-eyebrow">Vercel-first delivery</p>
+          <h2>Everything here stays static-friendly and easy to deploy.</h2>
+          <p>
+            The current repo remains intentionally lightweight so it can be
+            published quickly while the deeper product work is still forming.
+          </p>
+        </article>
       </section>
 
       <section className="footer-banner">
