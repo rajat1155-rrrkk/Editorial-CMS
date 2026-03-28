@@ -102,6 +102,45 @@ const supportingRoutes = [
   }
 ];
 
+const quickActions = [
+  {
+    label: "Create campaign page",
+    href: "/dashboard/pages/homepage-refresh",
+    detail: "Jump into a structured page draft with reusable blocks and bilingual review."
+  },
+  {
+    label: "Schedule story",
+    href: "/dashboard/posts/spring-volunteer-roundup",
+    detail: "Open the editorial detail view for a scheduled post and its translation checks."
+  },
+  {
+    label: "Review event",
+    href: "/dashboard/events/spring-open-farm-day",
+    detail: "Inspect a structured event record powering listings, previews, and homepage modules."
+  }
+];
+
+const launchPulse = [
+  { label: "Publishing uptime", value: "99.96%", note: "Preview and public pages rendering cleanly across active sites" },
+  { label: "Translation coverage", value: "84%", note: "Top-priority country pages available in launch languages" },
+  { label: "Review velocity", value: "11 closed", note: "Editorial approvals completed in the last seven days" }
+];
+
+const previewSpotlight = [
+  {
+    title: "France homepage refresh",
+    href: "/preview/france",
+    status: "Preview ready",
+    note: "Warm editorial storytelling with events, feature stories, and campaign modules."
+  },
+  {
+    title: "Portugal growth site",
+    href: "/preview/portugal",
+    status: "Preview ready",
+    note: "Clean membership guidance, practical information hierarchy, and local calls to action."
+  }
+];
+
 export default function Home() {
   return (
     <main className="dashboard-shell workspace-page">
@@ -143,6 +182,16 @@ export default function Home() {
         </aside>
       </section>
 
+      <section className="dashboard-grid dashboard-grid--three workspace-command-grid">
+        {quickActions.map((item) => (
+          <Link key={item.label} href={item.href} className="dashboard-card dashboard-link-card workspace-command-card">
+            <p className="dashboard-card__eyebrow">Quick action</p>
+            <h2>{item.label}</h2>
+            <p>{item.detail}</p>
+          </Link>
+        ))}
+      </section>
+
       <section className="dashboard-grid dashboard-grid--four">
         {primarySections.map((section) => (
           <Link key={section.title} href={section.href} className="dashboard-card dashboard-link-card">
@@ -172,6 +221,38 @@ export default function Home() {
               <li key={item}>{item}</li>
             ))}
           </ul>
+        </article>
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--split workspace-pulse-grid">
+        <article className="dashboard-card workspace-pulse-card">
+          <p className="dashboard-card__eyebrow">Launch pulse</p>
+          <h2>Signals that make the workspace feel live.</h2>
+          <div className="workspace-pulse-stack">
+            {launchPulse.map((item) => (
+              <div key={item.label} className="workspace-pulse-row">
+                <div>
+                  <p className="workspace-pulse-label">{item.label}</p>
+                  <span className="workspace-pulse-value">{item.value}</span>
+                </div>
+                <p>{item.note}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="dashboard-card workspace-preview-card">
+          <p className="dashboard-card__eyebrow">Preview spotlight</p>
+          <h2>Move from operations into public output without leaving the product.</h2>
+          <div className="workspace-preview-stack">
+            {previewSpotlight.map((item) => (
+              <Link key={item.title} href={item.href} className="workspace-preview-row">
+                <span className="workspace-status-pill">{item.status}</span>
+                <h3>{item.title}</h3>
+                <p>{item.note}</p>
+              </Link>
+            ))}
+          </div>
         </article>
       </section>
 
