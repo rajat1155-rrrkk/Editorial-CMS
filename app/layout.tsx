@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AppShellNav } from "../components/app-shell-nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,42 +24,14 @@ export default function RootLayout({
                 <Link href="/" className="brand-mark">
                   Editorial CMS
                 </Link>
-                <p className="sidebar-copy">
-                  Premium multi-site publishing for distributed editorial teams.
-                </p>
+                <p className="sidebar-copy">Multi-site publishing</p>
               </div>
 
-              <nav className="sidebar-group" aria-label="Workspace">
-                <p className="sidebar-label">Workspace</p>
-                <Link href="/">Command center</Link>
-                <Link href="/dashboard">Network overview</Link>
-                <Link href="/dashboard/pages">Pages</Link>
-                <Link href="/dashboard/posts">Posts</Link>
-                <Link href="/dashboard/events">Events</Link>
-                <Link href="/dashboard/media">Media</Link>
-              </nav>
-
-              <nav className="sidebar-group" aria-label="Operations">
-                <p className="sidebar-label">Operations</p>
-                <Link href="/dashboard/sites">Sites</Link>
-                <Link href="/dashboard/team">Team</Link>
-                <Link href="/dashboard/locales">Locales</Link>
-                <Link href="/dashboard/alerts">Alerts</Link>
-                <Link href="/dashboard/settings">Settings</Link>
-              </nav>
-
-              <nav className="sidebar-group" aria-label="Preview and Context">
-                <p className="sidebar-label">Preview and context</p>
-                <Link href="/preview">Public preview</Link>
-                <Link href="/platform">Platform</Link>
-                <Link href="/architecture">Architecture</Link>
-                <Link href="/about">About</Link>
-              </nav>
+              <AppShellNav />
 
               <div className="sidebar-card sidebar-status">
                 <p className="sidebar-label">Workspace state</p>
-                <strong>Production preview</strong>
-                <span>18 active sites</span>
+                <strong>18 active sites</strong>
                 <span>14 open reviews</span>
               </div>
             </aside>
@@ -88,13 +61,7 @@ export default function RootLayout({
 
               <footer className="site-footer">
                 <div className="site-footer-inner">
-                  <div>
-                    <p className="eyebrow">Editorial CMS showcase</p>
-                    <p className="footer-copy">
-                      A SaaS-style product demo for multi-domain, multilingual
-                      editorial operations and public-site delivery.
-                    </p>
-                  </div>
+                  <p className="site-footer-mark">Editorial CMS</p>
                   <div className="footer-links" aria-label="Footer">
                     <Link href="/preview">Preview</Link>
                     <Link href="/blog">Blog</Link>
