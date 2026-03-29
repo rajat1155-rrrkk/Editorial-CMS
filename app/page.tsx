@@ -50,22 +50,12 @@ const mainActions = [
   {
     title: "Open Admin",
     href: "/admin",
-    detail: "Edit page title and block content in the fake CMS."
+    detail: "Edit page title, blocks, and tenant content."
   },
   {
-    title: "View France",
+    title: "Open Tenant Site",
     href: "/france",
-    detail: "See one tenant homepage rendered from structured content."
-  },
-  {
-    title: "View India",
-    href: "/india",
-    detail: "See another site using the same architecture."
-  },
-  {
-    title: "View Canada",
-    href: "/canada",
-    detail: "See the multi-tenant model with a third site."
+    detail: "See one national site rendered from the shared CMS model."
   }
 ];
 
@@ -77,9 +67,9 @@ export default function Home() {
           <p className="dashboard-eyebrow">Editorial CMS</p>
           <h1>A shared editorial CMS for national WWOOF websites.</h1>
           <p className="dashboard-lede">
-            A lightweight SaaS-style prototype focused on multi-site publishing,
+            A lightweight SaaS-style prototype for multi-site publishing,
             multilingual content, simple editing, and structured public
-            communication.
+            communication across national organizations.
           </p>
           <div className="dashboard-hero__actions">
             <Link className="dashboard-button dashboard-button--primary" href="/admin">
@@ -110,7 +100,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <section className="dashboard-grid dashboard-grid--four">
+      <section className="dashboard-grid dashboard-grid--two">
         {mainActions.map((item) => (
           <Link key={item.title} href={item.href} className="dashboard-card dashboard-link-card">
             <p className="dashboard-card__eyebrow">Main action</p>
@@ -118,6 +108,18 @@ export default function Home() {
             <p>{item.detail}</p>
           </Link>
         ))}
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--one-titleless">
+        <article className="dashboard-card dashboard-card--accent">
+          <p className="dashboard-card__eyebrow">Scope</p>
+          <h2>Editorial content and public communication only.</h2>
+          <p>
+            This CMS is designed to complement the CWP, not replace it. The
+            focus stays on public-facing pages, stories, events, and
+            multilingual editorial publishing.
+          </p>
+        </article>
       </section>
 
       <section className="dashboard-grid dashboard-grid--five">
