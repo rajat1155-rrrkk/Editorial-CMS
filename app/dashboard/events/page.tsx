@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const eventStats = [
   { label: "Upcoming events", value: "24", detail: "Across all active sites" },
-  { label: "Events needing review", value: "7", detail: "Awaiting schedule or translation approval" },
-  { label: "Recurring series", value: "4", detail: "Seasonal and regional event templates" },
-  { label: "Imported from legacy sites", value: "13", detail: "Cleaned up from earlier WordPress calendars" }
+  { label: "Needs review", value: "7", detail: "Awaiting schedule or translation approval" },
+  { label: "Recurring series", value: "4", detail: "Seasonal and regional templates" },
+  { label: "Imported batches", value: "13", detail: "Legacy calendars cleaned up" }
 ];
 
 const events = [
@@ -14,7 +14,10 @@ const events = [
     date: "April 11",
     time: "09:30",
     status: "Scheduled",
-    type: "Public event"
+    type: "Public event",
+    owner: "Owner: France editorial desk",
+    reviewer: "Reviewer: Event publisher",
+    notes: "Homepage carousel synced · RSVP form live"
   },
   {
     title: "Coordinator office hours",
@@ -22,7 +25,10 @@ const events = [
     date: "April 13",
     time: "14:00",
     status: "Needs translation",
-    type: "Internal support"
+    type: "Internal support",
+    owner: "Owner: Canada support team",
+    reviewer: "Reviewer: French locale editor",
+    notes: "French copy pending · timezone confirmed"
   },
   {
     title: "Volunteer orientation webinar",
@@ -30,7 +36,10 @@ const events = [
     date: "April 18",
     time: "17:00",
     status: "Ready",
-    type: "Online session"
+    type: "Online session",
+    owner: "Owner: Portugal editorial desk",
+    reviewer: "Reviewer: Regional publisher",
+    notes: "Speaker notes approved · reminder scheduled"
   },
   {
     title: "Regional storytelling meetup",
@@ -38,7 +47,10 @@ const events = [
     date: "April 23",
     time: "19:00",
     status: "Published",
-    type: "Community event"
+    type: "Community event",
+    owner: "Owner: Korea editorial desk",
+    reviewer: "Reviewer: Event publisher",
+    notes: "Archive record locked · public listing active"
   }
 ];
 
@@ -51,12 +63,18 @@ const eventBlocks = [
 ];
 
 const schedulingNotes = [
-  "Editors can clone a recurring series and change only the dates and venue details.",
-  "Upcoming events can feed the homepage carousel and country-specific listing pages.",
+  "Editors can clone a recurring series and change only dates, venue, and RSVP details.",
+  "Upcoming events feed the homepage carousel and country-specific listing pages.",
   "Migration imports preserve historical events, but the editor still checks the final copy."
 ];
 
 const eventFilters = ["All events", "Upcoming", "Needs translation", "Online", "Published"];
+
+const liveSignals = [
+  { label: "RSVPs today", value: "48", detail: "12 from homepage promotions" },
+  { label: "Editors online", value: "4", detail: "2 scheduling, 1 reviewing" },
+  { label: "Timezone coverage", value: "6", detail: "UTC, CET, IST, PST, KST, GMT-3" }
+];
 
 export default function EventsDashboardPage() {
   return (
@@ -64,12 +82,7 @@ export default function EventsDashboardPage() {
       <section className="dashboard-events-hero">
         <div className="dashboard-events-hero__copy">
           <p className="dashboard-events-eyebrow">Events</p>
-          <h1>Coordinate upcoming events with a structured editorial workflow.</h1>
-          <p className="dashboard-events-lede">
-            This section gives the CMS its public-calendar feel: structured
-            fields, listing cards, locale-aware publishing, and enough queue
-            visibility for editors to manage recurring and one-off events.
-          </p>
+          <h1>Event publishing with schedule windows and review state.</h1>
           <div className="dashboard-events-actions">
             <Link href="/dashboard" className="dashboard-events-button dashboard-events-button--primary">
               Back to dashboard
@@ -89,6 +102,17 @@ export default function EventsDashboardPage() {
             </article>
           ))}
         </aside>
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--three">
+        {liveSignals.map((item) => (
+          <article key={item.label} className="dashboard-events-card">
+            <p className="dashboard-events-card__eyebrow">Live signal</p>
+            <h2>{item.label}</h2>
+            <strong>{item.value}</strong>
+            <p>{item.detail}</p>
+          </article>
+        ))}
       </section>
 
       <section className="dashboard-events-grid">
@@ -133,6 +157,7 @@ export default function EventsDashboardPage() {
           </div>
           <div className="dashboard-toolbar-meta">
             <span>7 approvals pending</span>
+            <span>2 venue changes</span>
             <span>Homepage carousel synced</span>
           </div>
         </div>
@@ -141,10 +166,10 @@ export default function EventsDashboardPage() {
           <div className="dashboard-events-table__row dashboard-events-table__row--head" role="row">
             <span role="columnheader">Event</span>
             <span role="columnheader">Site</span>
-            <span role="columnheader">Date</span>
-            <span role="columnheader">Time</span>
+            <span role="columnheader">Schedule</span>
+            <span role="columnheader">People</span>
             <span role="columnheader">Status</span>
-            <span role="columnheader">Type</span>
+            <span role="columnheader">Notes</span>
           </div>
 
           {events.map((event) => (
@@ -157,14 +182,26 @@ export default function EventsDashboardPage() {
                 ) : (
                   event.title
                 )}
+                <br />
+                <span>{event.type}</span>
               </span>
               <span role="cell">{event.site}</span>
-              <span role="cell">{event.date}</span>
-              <span role="cell">{event.time}</span>
+              <span role="cell">
+                <span>{event.date}</span>
+                <br />
+                <span>{event.time}</span>
+              </span>
+              <span role="cell">
+                <span>{event.owner}</span>
+                <br />
+                <span>{event.reviewer}</span>
+              </span>
               <span role="cell">
                 <span className="dashboard-status-pill">{event.status}</span>
               </span>
-              <span role="cell">{event.type}</span>
+              <span role="cell">
+                <span>{event.notes}</span>
+              </span>
             </article>
           ))}
         </div>

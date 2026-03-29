@@ -42,7 +42,7 @@ export default function LocalesPage() {
           <p className="dashboard-eyebrow">Locales</p>
           <h1>Language management for sites that need to publish globally and locally.</h1>
           <p className="dashboard-lede">
-            This page sketches the multilingual control surface: default
+            This page shows the multilingual control surface: default
             languages, translation readiness, and clear site-level ownership.
           </p>
           <div className="dashboard-hero__actions">

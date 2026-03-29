@@ -26,28 +26,28 @@ const roles = [
 
 const teamMembers = [
   {
-    name: "Nadia Martin",
+    name: "France editorial lead",
     site: "France",
     role: "Super Admin",
     lastSeen: "12 minutes ago",
     note: "Assigned a new language variant and reviewed the global banner."
   },
   {
-    name: "Luca Ferri",
+    name: "Italy content editor",
     site: "Italy",
     role: "Editor",
     lastSeen: "1 hour ago",
     note: "Scheduled a news post and approved two translated blocks."
   },
   {
-    name: "Mina Park",
+    name: "Korea coordinator",
     site: "Korea",
     role: "Coordinator",
     lastSeen: "3 hours ago",
     note: "Drafted a page update and requested media review."
   },
   {
-    name: "Daniel Costa",
+    name: "Portugal content editor",
     site: "Portugal",
     role: "Editor",
     lastSeen: "Yesterday",
@@ -118,7 +118,7 @@ export default function TeamPage() {
         <h2>Recent users with site ownership and activity notes.</h2>
         <div className="dashboard-table team-table" role="table" aria-label="Team members">
           <div className="sites-table__row sites-table__row--head" role="row">
-            <span role="columnheader">Person</span>
+            <span role="columnheader">Role holder</span>
             <span role="columnheader">Site</span>
             <span role="columnheader">Role</span>
             <span role="columnheader">Last seen</span>
