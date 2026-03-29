@@ -5,17 +5,17 @@ export const TENANTS: TenantSlug[] = ["france", "india", "canada"];
 export const DEFAULT_CONTENT: Record<TenantSlug, TenantContent> = {
   france: {
     slug: "france",
-    brandName: "WWOOF France",
+    brandName: "Editorial France",
     pageTitle: "Stories, events, and practical guidance for the French network.",
     pageSubtitle:
       "A premium editorial homepage powered by reusable blocks, bilingual publishing, and clear calls to action.",
-    globalBanner: "WWOOF Global Gathering 2026",
+    globalBanner: "Editorial Network Summit 2026",
     blocks: [
       {
         id: "fr-hero",
         type: "hero",
         data: {
-          eyebrow: "WWOOF France",
+          eyebrow: "Editorial France",
           title: "Editorial publishing for a local, living network.",
           description:
             "Share stories, publish events, and guide new members with a clean multi-site CMS experience.",
@@ -69,7 +69,7 @@ export const DEFAULT_CONTENT: Record<TenantSlug, TenantContent> = {
         data: {
           heading: "Ready to join the network?",
           body: "Guide visitors from editorial discovery into action with a strong, local call to action.",
-          buttonLabel: "Contact WWOOF France",
+          buttonLabel: "Contact the France team",
           buttonHref: "/contact"
         }
       },
@@ -118,17 +118,17 @@ export const DEFAULT_CONTENT: Record<TenantSlug, TenantContent> = {
   },
   india: {
     slug: "india",
-    brandName: "WWOOF India",
+    brandName: "Editorial India",
     pageTitle: "A modern public site for programs, regional stories, and seasonal events.",
     pageSubtitle:
       "Show how a country site can scale communication across regions while still feeling welcoming and clear.",
-    globalBanner: "WWOOF Global Gathering 2026",
+    globalBanner: "Editorial Network Summit 2026",
     blocks: [
       {
         id: "in-hero",
         type: "hero",
         data: {
-          eyebrow: "WWOOF India",
+          eyebrow: "Editorial India",
           title: "Multi-region editorial publishing with a calm SaaS workflow.",
           description:
             "Publish updates, support local teams, and keep public content consistent across a growing network.",
@@ -231,17 +231,17 @@ export const DEFAULT_CONTENT: Record<TenantSlug, TenantContent> = {
   },
   canada: {
     slug: "canada",
-    brandName: "WWOOF Canada",
+    brandName: "Editorial Canada",
     pageTitle: "Structured publishing for public pages, stories, events, and campaigns.",
     pageSubtitle:
       "A cleaner way to operate local content while keeping search-friendly public pages and reusable SaaS workflows.",
-    globalBanner: "WWOOF Global Gathering 2026",
+    globalBanner: "Editorial Network Summit 2026",
     blocks: [
       {
         id: "ca-hero",
         type: "hero",
         data: {
-          eyebrow: "WWOOF Canada",
+          eyebrow: "Editorial Canada",
           title: "A shared CMS with room for local editorial identity.",
           description:
             "Simulate multi-tenant publishing, reusable blocks, and structured content for a national site.",

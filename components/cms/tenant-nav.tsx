@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import { TENANTS } from "../../lib/cms/default-content";
 
 const labels: Record<(typeof TENANTS)[number], string> = {
-  france: "WWOOF France",
-  india: "WWOOF India",
-  canada: "WWOOF Canada"
+  france: "France",
+  india: "India",
+  canada: "Canada"
 };
 
 export function TenantNav() {
@@ -21,7 +21,7 @@ export function TenantNav() {
             Multi-tenant preview
           </p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">
-            WWOOF France | WWOOF India | WWOOF Canada
+            France | India | Canada
           </h2>
         </div>
         <Link

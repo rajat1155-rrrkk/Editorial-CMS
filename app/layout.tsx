@@ -41,7 +41,7 @@ export default function RootLayout({
                 <div className="topbar-inner">
                   <div className="topbar-context">
                     <p className="topbar-kicker">Workspace</p>
-                    <strong>Federation editorial operations</strong>
+                    <strong>Editorial network operations</strong>
                   </div>
                   <div className="topbar-search" aria-label="Search">
                     <span>Search pages, posts, events, or sites</span>
@@ -52,7 +52,7 @@ export default function RootLayout({
                       Live sync
                     </div>
                     <div className="utility-pill">3 approvals pending</div>
-                    <div className="utility-avatar">RM</div>
+                    <div className="utility-avatar">EC</div>
                   </div>
                 </div>
               </header>

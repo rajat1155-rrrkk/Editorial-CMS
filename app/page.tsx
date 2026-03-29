@@ -11,9 +11,9 @@ const coreCapabilities = [
 const principles = [
   "Clear national identity",
   "Fits small and large teams",
-  "Aligned with the WWOOF ecosystem",
+  "Aligned with the shared platform",
   "Low technical overhead",
-  "Complements the CWP"
+  "Complements the core platform"
 ];
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
       <section className="dashboard-hero workspace-hero workspace-hero--minimal">
         <div className="dashboard-hero__copy workspace-copy--minimal">
           <p className="dashboard-eyebrow">Editorial CMS</p>
-          <h1>Shared editorial publishing for national WWOOF websites.</h1>
+          <h1>Shared editorial publishing for national organization websites.</h1>
           <div className="dashboard-hero__actions">
             <Link className="dashboard-button dashboard-button--primary" href="/admin">
               Admin
