@@ -1032,6 +1032,65 @@ h3,
     linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(240, 250, 244, 0.92));
 }
 
+.workspace-page--minimal {
+  max-width: 1120px;
+}
+
+.workspace-hero--minimal {
+  grid-template-columns: 1fr;
+}
+
+.workspace-copy--minimal {
+  padding: 2rem 2.1rem;
+}
+
+.workspace-page--minimal .dashboard-hero h1 {
+  max-width: 14ch;
+  font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.workspace-page--minimal .dashboard-lede {
+  max-width: 34ch;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.workspace-minimal-section {
+  margin-top: 1rem;
+  padding: 1.25rem;
+}
+
+.workspace-pill-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.workspace-pill-card {
+  min-height: 112px;
+  display: flex;
+  align-items: end;
+  padding: 1rem;
+  border-radius: 22px;
+  border: 1px solid rgba(24, 132, 91, 0.1);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow-soft);
+}
+
+.workspace-pill-card--soft {
+  background: rgba(244, 251, 246, 0.9);
+}
+
+.workspace-pill-card h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
 .workspace-pulse-card,
 .workspace-preview-card {
   min-height: 100%;
@@ -1629,6 +1688,7 @@ h3,
   .dashboard-media-grid,
   .editor-grid--split,
   .editor-approval-grid,
+  .workspace-pill-grid,
   .preview-signal-strip,
   .sites-table__row {
     grid-template-columns: 1fr;
