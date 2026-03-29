@@ -23,9 +23,6 @@ export default function Home() {
         <div className="dashboard-hero__copy workspace-copy--minimal">
           <p className="dashboard-eyebrow">Editorial CMS</p>
           <h1>Shared editorial publishing for national WWOOF websites.</h1>
-          <p className="dashboard-lede">
-            Multi-site. Multilingual. Simple to operate.
-          </p>
           <div className="dashboard-hero__actions">
             <Link className="dashboard-button dashboard-button--primary" href="/admin">
               Admin
@@ -42,7 +39,7 @@ export default function Home() {
         <div className="workspace-pill-grid">
           {coreCapabilities.map((item) => (
             <div key={item} className="workspace-pill-card">
-              <h2>{item}</h2>
+              <p>{item}</p>
             </div>
           ))}
         </div>
@@ -53,7 +50,7 @@ export default function Home() {
         <div className="workspace-pill-grid">
           {principles.map((item) => (
             <div key={item} className="workspace-pill-card workspace-pill-card--soft">
-              <h2>{item}</h2>
+              <p>{item}</p>
             </div>
           ))}
         </div>
