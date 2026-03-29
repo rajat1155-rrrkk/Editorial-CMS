@@ -110,18 +110,6 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="dashboard-grid dashboard-grid--one-titleless">
-        <article className="dashboard-card dashboard-card--accent">
-          <p className="dashboard-card__eyebrow">Scope</p>
-          <h2>Editorial content and public communication only.</h2>
-          <p>
-            This CMS is designed to complement the CWP, not replace it. The
-            focus stays on public-facing pages, stories, events, and
-            multilingual editorial publishing.
-          </p>
-        </article>
-      </section>
-
       <section className="dashboard-grid dashboard-grid--five">
         {coreCapabilities.map((item) => (
           <article key={item.title} className="dashboard-card">
