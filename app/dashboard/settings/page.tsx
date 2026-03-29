@@ -1,40 +1,57 @@
 import Link from "next/link";
 
-const settings = [
+const environment = [
   {
-    label: "Default theme",
-    value: "Editorial neutral",
-    detail: "Applies the common public styling across country sites"
+    label: "Public app",
+    value: "Vercel production",
+    detail: "18 mapped domains · edge cache enabled"
   },
   {
-    label: "Publishing mode",
-    value: "SSR public web",
-    detail: "Keeps pages indexable and fast for search and sharing"
+    label: "Content API",
+    value: "/api/content",
+    detail: "Serverless route · 126 successful reads today"
   },
   {
-    label: "Content workflow",
-    value: "Draft, review, publish",
-    detail: "Simple approval flow without fine-grained complexity"
+    label: "Media storage",
+    value: "4.2 GB used",
+    detail: "Shared library · 20 GB allocation"
   },
   {
-    label: "Migration support",
-    value: "WordPress blog import",
-    detail: "Best-effort migration path for existing editorial posts"
+    label: "Publish flow",
+    value: "Draft → Review → Publish",
+    detail: "2 queues waiting for approval"
   }
 ];
 
 const domains = [
-  { site: "Canada", domain: "ca.example.org", status: "Verified" },
-  { site: "France", domain: "fr.example.org", status: "Verified" },
-  { site: "Portugal", domain: "pt.example.org", status: "Pending SSL" },
-  { site: "Korea", domain: "kr.example.org", status: "Provisioning" }
+  { site: "Canada", domain: "canada.editorial-demo.org", status: "Verified" },
+  { site: "France", domain: "france.editorial-demo.org", status: "Verified" },
+  { site: "Portugal", domain: "portugal.editorial-demo.org", status: "Pending SSL" },
+  { site: "Korea", domain: "korea.editorial-demo.org", status: "Provisioning" }
 ];
 
-const toggles = [
-  "Allow super admins to create new sites",
-  "Enable multilingual routes for every new site",
-  "Show the global alert banner site-wide",
-  "Expose public content through future APIs"
+const flags = [
+  { label: "Create new sites", state: "Enabled" },
+  { label: "Locale variants", state: "Enabled" },
+  { label: "Global banner", state: "Enabled" },
+  { label: "Public API exposure", state: "Enabled" },
+  { label: "Legacy imports", state: "Scheduled" },
+  { label: "Public submissions", state: "Off" }
+];
+
+const settingsSnapshot = [
+  { key: "Default theme", value: "Editorial White" },
+  { key: "Homepage layout", value: "Block builder v2" },
+  { key: "Default locale", value: "en" },
+  { key: "Search indexing", value: "On" },
+  { key: "Alert banner", value: "Network Summit 2026" },
+  { key: "Migration mode", value: "WordPress posts only" }
+];
+
+const releaseNotes = [
+  "France domain certificate renewed successfully.",
+  "India locale set updated to include Hindi content review.",
+  "Two imported blog batches are waiting for image cleanup."
 ];
 
 export default function SettingsPage() {
@@ -43,12 +60,7 @@ export default function SettingsPage() {
       <section className="dashboard-hero settings-hero">
         <div className="dashboard-hero__copy settings-hero__copy">
           <p className="dashboard-eyebrow">Site settings</p>
-          <h1>Federation-wide defaults that stay predictable for every site.</h1>
-          <p className="dashboard-lede">
-            This page represents the operational layer: shared config, domains,
-            publish rules, and default behavior that super admins can manage
-            without custom infrastructure.
-          </p>
+          <h1>Shared configuration for the editorial network.</h1>
           <div className="dashboard-hero__actions">
             <Link className="dashboard-button dashboard-button--primary" href="/dashboard">
               Back to overview
@@ -60,7 +72,7 @@ export default function SettingsPage() {
         </div>
 
         <aside className="dashboard-hero__panel settings-hero__panel" aria-label="Settings summary">
-          {settings.slice(0, 2).map((item) => (
+          {environment.slice(0, 2).map((item) => (
             <article key={item.label} className="dashboard-metric">
               <p>{item.label}</p>
               <strong>{item.value}</strong>
@@ -71,9 +83,9 @@ export default function SettingsPage() {
       </section>
 
       <section className="dashboard-grid dashboard-grid--two settings-grid">
-        {settings.map((item) => (
+        {environment.map((item) => (
           <article key={item.label} className="dashboard-card settings-card">
-            <p className="dashboard-card__eyebrow">Default</p>
+            <p className="dashboard-card__eyebrow">Environment</p>
             <h2>{item.label}</h2>
             <p>{item.value}</p>
             <p>{item.detail}</p>
@@ -81,18 +93,30 @@ export default function SettingsPage() {
         ))}
       </section>
 
-      <section className="section-split settings-controls">
-        <div className="section-header">
-          <p className="eyebrow">Global controls</p>
-          <h2>Flags that shape the behavior of every managed site.</h2>
-        </div>
-        <div className="checklist-card">
-          {toggles.map((item) => (
-            <p key={item} className="check-item">
-              {item}
-            </p>
-          ))}
-        </div>
+      <section className="dashboard-grid dashboard-grid--split">
+        <article className="dashboard-card settings-card">
+          <p className="dashboard-card__eyebrow">Feature flags</p>
+          <div className="workspace-settings-grid">
+            {flags.map((item) => (
+              <div key={item.label} className="workspace-setting">
+                <span>{item.label}</span>
+                <strong>{item.state}</strong>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="dashboard-card settings-card">
+          <p className="dashboard-card__eyebrow">Current values</p>
+          <div className="workspace-settings-grid">
+            {settingsSnapshot.map((item) => (
+              <div key={item.key} className="workspace-setting">
+                <span>{item.key}</span>
+                <strong>{item.value}</strong>
+              </div>
+            ))}
+          </div>
+        </article>
       </section>
 
       <section className="dashboard-card settings-domains" id="domains">
@@ -112,6 +136,15 @@ export default function SettingsPage() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="dashboard-card settings-card">
+        <p className="dashboard-card__eyebrow">Release notes</p>
+        <ul className="dashboard-list">
+          {releaseNotes.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </section>
     </main>
   );

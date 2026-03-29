@@ -3,44 +3,46 @@ import Link from "next/link";
 const sites = [
   {
     name: "Canada",
-    domain: "ca.example.org",
+    domain: "canada.editorial-demo.org",
     status: "Live",
     languages: ["English", "French"],
     owners: "3 editors",
-    nextStep: "Refresh volunteer stories and publish a winter event archive."
+    updatedAt: "12 min ago",
+    nextStep: "Homepage refresh queued for approval."
   },
   {
     name: "France",
-    domain: "fr.example.org",
+    domain: "france.editorial-demo.org",
     status: "Live",
     languages: ["French", "English"],
     owners: "4 editors",
-    nextStep: "Complete homepage translations and lock the upcoming campaign page."
+    updatedAt: "34 min ago",
+    nextStep: "Spring campaign page scheduled for Monday."
   },
   {
     name: "Portugal",
-    domain: "pt.example.org",
+    domain: "portugal.editorial-demo.org",
     status: "Launching",
     languages: ["Portuguese", "English"],
     owners: "2 editors",
-    nextStep: "Connect the new site to a public newsletter signup flow."
+    updatedAt: "1 hr ago",
+    nextStep: "SSL and domain cutover in progress."
   },
   {
     name: "Korea",
-    domain: "kr.example.org",
+    domain: "korea.editorial-demo.org",
     status: "Provisioning",
     languages: ["Korean", "English"],
     owners: "2 editors",
-    nextStep: "Import legacy posts and map the first editorial blocks."
+    updatedAt: "Today",
+    nextStep: "Initial blog import and locale setup pending."
   }
 ];
 
-const controls = [
-  "Add new national site",
-  "Add language variant",
-  "Assign coordinators",
-  "Update domain mapping",
-  "Review publication permissions"
+const launchQueue = [
+  { item: "Portugal", note: "Domain certificate waiting on DNS propagation" },
+  { item: "Korea", note: "Legacy post import validation due today" },
+  { item: "Mexico", note: "New tenant request approved, workspace not yet provisioned" }
 ];
 
 const siteMetrics = [
@@ -50,18 +52,20 @@ const siteMetrics = [
   { label: "Queued launches", value: "4" }
 ];
 
+const provisioningActions = [
+  { label: "Create site", value: "2 pending requests" },
+  { label: "Add locale", value: "fr-CA staged" },
+  { label: "Assign editors", value: "5 invites open" },
+  { label: "Domain cutover", value: "1 waiting on SSL" }
+];
+
 export default function SitesPage() {
   return (
     <main className="sites-shell">
       <section className="sites-hero">
         <div className="sites-hero__copy">
           <p className="sites-eyebrow">Site management</p>
-          <h1>Provision country websites and language variants in one place.</h1>
-          <p className="sites-lede">
-            This page sketches the super-admin view for federated publishing:
-            clean ownership boundaries, simple site provisioning, and clear
-            launch status across the network.
-          </p>
+          <h1>Operate sites, domains, and locales from one workspace.</h1>
           <div className="sites-actions">
             <Link href="/dashboard" className="sites-button sites-button--primary">
               Back to overview
@@ -84,35 +88,33 @@ export default function SitesPage() {
 
       <section className="sites-grid">
         <article className="sites-card">
-          <p className="sites-card__eyebrow">Admin controls</p>
-          <h2>Core actions for super admins.</h2>
-          <ul className="sites-list">
-            {controls.map((item) => (
-              <li key={item}>{item}</li>
+          <p className="sites-card__eyebrow">Provisioning</p>
+          <div className="workspace-settings-grid">
+            {provisioningActions.map((item) => (
+              <div key={item.label} className="workspace-setting">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
             ))}
-          </ul>
+          </div>
         </article>
 
         <article className="sites-card">
-          <p className="sites-card__eyebrow">Provisioning model</p>
-          <h2>Out-of-the-box multi-site support with clear delegation.</h2>
-          <p className="sites-copy">
-            Each national site owns its editorial scope, while the federation can
-            centrally configure domains, languages, and shared templates without
-            building custom infrastructure around the CMS.
-          </p>
-          <p className="sites-copy">
-            The sample assumes limited but practical permissions: one site for
-            most coordinators, broader visibility for federation admins, and no
-            unnecessary fine-grained complexity in the MVP.
-          </p>
+          <p className="sites-card__eyebrow">Launch queue</p>
+          <ul className="dashboard-list">
+            {launchQueue.map((item) => (
+              <li key={item.item}>
+                <strong>{item.item}:</strong> {item.note}
+              </li>
+            ))}
+          </ul>
         </article>
       </section>
 
       <section className="sites-table-shell" id="sites">
         <div className="sites-table-shell__header">
           <p className="sites-eyebrow">Network status</p>
-          <h2>Country site inventory and launch notes.</h2>
+          <h2>Site inventory and rollout notes.</h2>
         </div>
 
         <div className="sites-table" role="table" aria-label="Managed sites">
@@ -122,6 +124,7 @@ export default function SitesPage() {
             <span role="columnheader">Status</span>
             <span role="columnheader">Languages</span>
             <span role="columnheader">Owners</span>
+            <span role="columnheader">Last update</span>
             <span role="columnheader">Next step</span>
           </div>
 
@@ -132,6 +135,7 @@ export default function SitesPage() {
               <span role="cell">{site.status}</span>
               <span role="cell">{site.languages.join(" / ")}</span>
               <span role="cell">{site.owners}</span>
+              <span role="cell">{site.updatedAt}</span>
               <span role="cell">{site.nextStep}</span>
             </article>
           ))}
