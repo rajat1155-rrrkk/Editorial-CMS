@@ -141,6 +141,33 @@ const previewSpotlight = [
   }
 ];
 
+const saasPrototypeLinks = [
+  {
+    title: "WWOOF France tenant",
+    href: "/france",
+    badge: "Tenant route",
+    detail: "Rendered from dynamic block content through the fake CMS API."
+  },
+  {
+    title: "WWOOF India tenant",
+    href: "/india",
+    badge: "Tenant route",
+    detail: "A second tenant proving per-site content isolation with the same app shell."
+  },
+  {
+    title: "WWOOF Canada tenant",
+    href: "/canada",
+    badge: "Tenant route",
+    detail: "A third tenant showing the same block architecture with different content."
+  },
+  {
+    title: "Admin editor",
+    href: "/admin",
+    badge: "CMS mode",
+    detail: "Edit page title and block data through the serverless API and local fallback."
+  }
+];
+
 export default function Home() {
   return (
     <main className="dashboard-shell workspace-page">
@@ -154,11 +181,11 @@ export default function Home() {
             events, media, locales, site setup, and launch operations.
           </p>
           <div className="dashboard-hero__actions">
-            <Link className="dashboard-button dashboard-button--primary" href="/dashboard/pages">
-              Enter content workspace
+            <Link className="dashboard-button dashboard-button--primary" href="/admin">
+              Open admin editor
             </Link>
-            <Link className="dashboard-button dashboard-button--secondary" href="/dashboard">
-              Open network overview
+            <Link className="dashboard-button dashboard-button--secondary" href="/france">
+              Open tenant homepage
             </Link>
           </div>
         </div>
@@ -180,6 +207,16 @@ export default function Home() {
             <span>Admin operations, locales, and shared settings included in the first release</span>
           </article>
         </aside>
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--four">
+        {saasPrototypeLinks.map((item) => (
+          <Link key={item.title} href={item.href} className="dashboard-card dashboard-link-card">
+            <p className="dashboard-card__eyebrow">{item.badge}</p>
+            <h2>{item.title}</h2>
+            <p>{item.detail}</p>
+          </Link>
+        ))}
       </section>
 
       <section className="dashboard-grid dashboard-grid--three workspace-command-grid">
