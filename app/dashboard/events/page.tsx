@@ -43,12 +43,12 @@ const events = [
   },
   {
     title: "Regional storytelling meetup",
-    site: "Korea",
+    site: "South Korea",
     date: "April 23",
     time: "19:00",
     status: "Published",
     type: "Community event",
-    owner: "Owner: Korea editorial desk",
+    owner: "Owner: South Korea editorial desk",
     reviewer: "Reviewer: Event publisher",
     notes: "Archive record locked · public listing active"
   }

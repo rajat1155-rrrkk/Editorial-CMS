@@ -44,7 +44,7 @@ const postQueue = [
   {
     title: "Archive import: 2019 event stories",
     category: "Migration",
-    site: "Korea",
+    site: "South Korea",
     status: "Imported",
     language: "Korean / English",
     people: "Imported by: CMS migration job",

@@ -2,13 +2,40 @@ import Link from "next/link";
 
 const sites = [
   {
-    name: "Canada",
-    domain: "canada.editorial-demo.org",
+    name: "UK",
+    domain: "uk.editorial-demo.org",
     status: "Live",
-    languages: ["English", "French"],
+    languages: ["English"],
     owners: "3 editors",
     updatedAt: "12 min ago",
     nextStep: "Homepage refresh queued for approval."
+  },
+  {
+    name: "Germany",
+    domain: "germany.editorial-demo.org",
+    status: "Live",
+    languages: ["German", "English"],
+    owners: "4 editors",
+    updatedAt: "24 min ago",
+    nextStep: "Spring campaign page scheduled for Monday."
+  },
+  {
+    name: "Spain",
+    domain: "spain.editorial-demo.org",
+    status: "Review",
+    languages: ["Spanish", "English"],
+    owners: "3 editors",
+    updatedAt: "31 min ago",
+    nextStep: "Homepage banner waiting on translation QA."
+  },
+  {
+    name: "Italy",
+    domain: "italy.editorial-demo.org",
+    status: "Live",
+    languages: ["Italian", "English"],
+    owners: "4 editors",
+    updatedAt: "18 min ago",
+    nextStep: "Event carousel synced to the public site."
   },
   {
     name: "France",
@@ -29,34 +56,115 @@ const sites = [
     nextStep: "SSL and domain cutover in progress."
   },
   {
-    name: "Korea",
+    name: "Netherlands",
+    domain: "netherlands.editorial-demo.org",
+    status: "Live",
+    languages: ["Dutch", "English"],
+    owners: "3 editors",
+    updatedAt: "28 min ago",
+    nextStep: "Homepage impact metrics updated."
+  },
+  {
+    name: "Sweden",
+    domain: "sweden.editorial-demo.org",
+    status: "Live",
+    languages: ["Swedish", "English"],
+    owners: "2 editors",
+    updatedAt: "41 min ago",
+    nextStep: "Community stories queued for review."
+  },
+  {
+    name: "Japan",
+    domain: "japan.editorial-demo.org",
+    status: "Review",
+    languages: ["Japanese", "English"],
+    owners: "3 editors",
+    updatedAt: "12 min ago",
+    nextStep: "Event translation locked for QA."
+  },
+  {
+    name: "South Korea",
     domain: "korea.editorial-demo.org",
     status: "Provisioning",
     languages: ["Korean", "English"],
     owners: "2 editors",
     updatedAt: "Today",
     nextStep: "Initial blog import and locale setup pending."
+  },
+  {
+    name: "India",
+    domain: "india.editorial-demo.org",
+    status: "Live",
+    languages: ["English", "Hindi"],
+    owners: "5 editors",
+    updatedAt: "9 min ago",
+    nextStep: "Regional stories syncing to the homepage feed."
+  },
+  {
+    name: "USA",
+    domain: "usa.editorial-demo.org",
+    status: "Live",
+    languages: ["English", "Spanish"],
+    owners: "4 editors",
+    updatedAt: "21 min ago",
+    nextStep: "Newsletter block approved."
+  },
+  {
+    name: "Canada",
+    domain: "canada.editorial-demo.org",
+    status: "Live",
+    languages: ["English", "French"],
+    owners: "4 editors",
+    updatedAt: "14 min ago",
+    nextStep: "Homepage refresh queued for approval."
+  },
+  {
+    name: "Mexico",
+    domain: "mexico.editorial-demo.org",
+    status: "Launching",
+    languages: ["Spanish", "English"],
+    owners: "3 editors",
+    updatedAt: "47 min ago",
+    nextStep: "Partner campaign content in final review."
+  },
+  {
+    name: "Brazil",
+    domain: "brazil.editorial-demo.org",
+    status: "Live",
+    languages: ["Portuguese", "English"],
+    owners: "4 editors",
+    updatedAt: "16 min ago",
+    nextStep: "Seasonal event cards updated."
+  },
+  {
+    name: "Argentina",
+    domain: "argentina.editorial-demo.org",
+    status: "Review",
+    languages: ["Spanish", "English"],
+    owners: "2 editors",
+    updatedAt: "33 min ago",
+    nextStep: "Editorial QA before public release."
   }
 ];
 
 const launchQueue = [
   { item: "Portugal", note: "Domain certificate waiting on DNS propagation" },
-  { item: "Korea", note: "Legacy post import validation due today" },
+  { item: "South Korea", note: "Legacy post import validation due today" },
   { item: "Mexico", note: "New tenant request approved, workspace not yet provisioned" }
 ];
 
 const siteMetrics = [
-  { label: "Configured sites", value: "18" },
-  { label: "Editors assigned", value: "61" },
-  { label: "Domains mapped", value: "22" },
-  { label: "Queued launches", value: "4" }
+  { label: "Configured sites", value: "16" },
+  { label: "Editors assigned", value: "92" },
+  { label: "Domains mapped", value: "16" },
+  { label: "Queued launches", value: "6" }
 ];
 
 const provisioningActions = [
   { label: "Create site", value: "2 pending requests" },
   { label: "Add locale", value: "fr-CA staged" },
-  { label: "Assign editors", value: "5 invites open" },
-  { label: "Domain cutover", value: "1 waiting on SSL" }
+  { label: "Assign editors", value: "8 invites open" },
+  { label: "Domain cutover", value: "2 waiting on SSL" }
 ];
 
 export default function SitesPage() {

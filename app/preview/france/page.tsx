@@ -30,14 +30,29 @@ const homepageCards = [
 
 const franceSignals = [
   { value: "34k", label: "Monthly public visits" },
-  { value: "18", label: "Featured regional programs" },
-  { value: "2", label: "Homepage languages" }
+  { value: "16", label: "Country sites in network" },
+  { value: "12", label: "Public languages" }
 ];
 
 const francePillars = [
   "Editorial warmth with a magazine-like homepage rhythm",
   "Seasonal campaigns supported by reusable premium modules",
   "Strong local events presence with clean public discoverability"
+];
+
+const networkCoverage = [
+  {
+    region: "Europe",
+    countries: "UK, Germany, Spain, Italy, France, Portugal, Netherlands, Sweden"
+  },
+  {
+    region: "Asia",
+    countries: "Japan, South Korea, India"
+  },
+  {
+    region: "Americas",
+    countries: "USA, Canada, Mexico, Brazil, Argentina"
+  }
 ];
 
 export default function FrancePreviewPage() {
@@ -98,6 +113,16 @@ export default function FrancePreviewPage() {
         </div>
       </section>
 
+      <section className="section-grid preview-feature-grid">
+        {networkCoverage.map((item) => (
+          <article key={item.region} className="feature-card preview-feature-card">
+            <p className="card-eyebrow">Network coverage</p>
+            <h2>{item.region}</h2>
+            <p>{item.countries}</p>
+          </article>
+        ))}
+      </section>
+
       <section className="section-split preview-luxury-split">
         <div className="section-header">
           <p className="eyebrow">Editorial character</p>
@@ -132,8 +157,8 @@ export default function FrancePreviewPage() {
         <p className="eyebrow">Call to action</p>
         <h2>Join the network, explore local programs, or contact the country team.</h2>
         <p>
-          This page is a lightweight stand-in for a real homepage generated from
-          CMS content and localized editorial blocks.
+          This page is a live sample homepage generated from CMS content and
+          localized editorial blocks.
         </p>
       </section>
     </main>

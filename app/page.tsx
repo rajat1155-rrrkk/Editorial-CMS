@@ -1,47 +1,47 @@
 import Link from "next/link";
 
 const launchMetrics = [
-  { label: "Active sites", value: "18", detail: "4 staged this week" },
-  { label: "Locales live", value: "7", detail: "2 pending review" },
-  { label: "Items in review", value: "14", detail: "Pages, posts, events" },
-  { label: "API deliveries", value: "126", detail: "Last 24 hours" }
+  { label: "Active sites", value: "16", detail: "Across Europe, Asia, and the Americas" },
+  { label: "Locales live", value: "31", detail: "5 more in rollout review" },
+  { label: "Items in review", value: "24", detail: "Pages, posts, events, and alerts" },
+  { label: "API deliveries", value: "468", detail: "Last 24 hours" }
 ];
 
 const siteRows = [
   {
-    site: "France",
-    locale: "fr, en",
+    site: "UK",
+    locale: "en",
     status: "Live",
-    updated: "12 min ago"
+    updated: "9 min ago"
   },
   {
-    site: "India",
-    locale: "en, hi",
+    site: "Japan",
+    locale: "ja, en",
+    status: "Live",
+    updated: "22 min ago"
+  },
+  {
+    site: "Brazil",
+    locale: "pt-BR, en",
     status: "Review",
-    updated: "46 min ago"
-  },
-  {
-    site: "Canada",
-    locale: "en, fr",
-    status: "Live",
-    updated: "2 hr ago"
+    updated: "47 min ago"
   }
 ];
 
 const reviewQueue = [
   {
-    title: "Homepage spring update",
-    meta: "France · Page · Editor review",
+    title: "Summer homepage launch",
+    meta: "Germany · Page · Editor review",
     href: "/dashboard/pages/homepage-refresh"
   },
   {
     title: "Volunteer roundup",
-    meta: "Canada · Post · Ready to publish",
+    meta: "Mexico · Post · Ready to publish",
     href: "/dashboard/posts/spring-volunteer-roundup"
   },
   {
     title: "Open farm day",
-    meta: "India · Event · Time change requested",
+    meta: "South Korea · Event · Time change requested",
     href: "/dashboard/events/spring-open-farm-day"
   }
 ];
@@ -49,9 +49,9 @@ const reviewQueue = [
 const settingsSnapshot = [
   { key: "Primary mode", value: "Multi-site" },
   { key: "Content API", value: "/api/content" },
-  { key: "Public domains", value: "18 mapped" },
-  { key: "Media storage", value: "4.2 GB / 20 GB" },
-  { key: "Locales", value: "en, fr, hi, pt" },
+  { key: "Public domains", value: "16 mapped" },
+  { key: "Media storage", value: "8.6 GB / 40 GB" },
+  { key: "Locales", value: "en, fr, de, es, it, pt, ja, ko, hi" },
   { key: "Banner", value: "Network Summit 2026" }
 ];
 
@@ -66,7 +66,7 @@ export default function Home() {
             <Link className="dashboard-button dashboard-button--primary" href="/admin">
               Open admin
             </Link>
-            <Link className="dashboard-button dashboard-button--secondary" href="/france">
+            <Link className="dashboard-button dashboard-button--secondary" href="/uk">
               Open site
             </Link>
           </div>

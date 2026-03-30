@@ -31,8 +31,8 @@ export default function RootLayout({
 
               <div className="sidebar-card sidebar-status">
                 <p className="sidebar-label">Workspace state</p>
-                <strong>18 active sites</strong>
-                <span>14 open reviews</span>
+                <strong>16 active sites</strong>
+                <span>24 open reviews</span>
               </div>
             </aside>
 

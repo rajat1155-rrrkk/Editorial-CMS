@@ -55,7 +55,7 @@ const mediaQueue = [
   },
   {
     name: "legacy-event-banner.png",
-    site: "Korea",
+    site: "South Korea",
     use: "Imported batch",
     type: "Image",
     status: "Imported",
@@ -82,7 +82,7 @@ const activityLog = [
   "France replaced a homepage hero image and kept the same crop for mobile.",
   "Canada published a PDF guide with searchable text and a linked title.",
   "Portugal flagged one coordinator portrait for missing alt text.",
-  "Korea imported a legacy event banner and queued it for duplicate review."
+  "South Korea imported a legacy event banner and queued it for duplicate review."
 ];
 
 export default function MediaDashboardPage() {

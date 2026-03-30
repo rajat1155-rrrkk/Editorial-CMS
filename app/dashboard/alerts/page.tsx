@@ -9,15 +9,21 @@ const alerts = [
   },
   {
     title: "SEO review",
-    audience: "Translated pages",
+    audience: "Europe cluster",
     status: "Needs edits",
     copy: "Three translated pages are missing meta descriptions before release."
   },
   {
     title: "Campaign banner",
-    audience: "France and Italy",
+    audience: "Americas cluster",
     status: "Ready",
     copy: "Localized promotion banner approved and waiting for publish time."
+  },
+  {
+    title: "Regional briefing",
+    audience: "Asia cluster",
+    status: "Draft",
+    copy: "Japan, South Korea, and India are scheduled for the next release window."
   }
 ];
 
@@ -26,6 +32,11 @@ const bannerOptions = [
   "Limit to selected countries or languages",
   "Use rich text, links, and simple emphasis",
   "Schedule start and end times with editor review"
+];
+
+const alertMetrics = [
+  { label: "Regional clusters", value: "3", detail: "Europe, Asia, and Americas" },
+  { label: "Active banners", value: "1", detail: "Maintenance banner currently queued" }
 ];
 
 export default function AlertsPage() {
@@ -51,16 +62,13 @@ export default function AlertsPage() {
         </div>
 
         <aside className="dashboard-hero__panel alerts-hero__panel" aria-label="Banner summary">
-          <article className="dashboard-metric">
-            <p>Active banner</p>
-            <strong>1</strong>
-            <span>Maintenance notice currently queued</span>
-          </article>
-          <article className="dashboard-metric">
-            <p>Audience targets</p>
-            <strong>3</strong>
-            <span>Global, site-specific, and locale-specific</span>
-          </article>
+          {alertMetrics.map((item) => (
+            <article key={item.label} className="dashboard-metric">
+              <p>{item.label}</p>
+              <strong>{item.value}</strong>
+              <span>{item.detail}</span>
+            </article>
+          ))}
         </aside>
       </section>
 

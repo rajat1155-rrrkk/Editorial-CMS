@@ -30,14 +30,29 @@ const homepageCards = [
 
 const portugalSignals = [
   { value: "21k", label: "Monthly public visits" },
-  { value: "9", label: "Membership guidance modules" },
-  { value: "2", label: "Homepage languages" }
+  { value: "16", label: "Country sites in network" },
+  { value: "12", label: "Public languages" }
 ];
 
 const portugalPillars = [
   "Elegant information hierarchy designed for practical conversion",
   "Bright, trust-building sections for membership and first-visit guidance",
   "Flexible campaign areas without losing calm visual discipline"
+];
+
+const networkCoverage = [
+  {
+    region: "Europe",
+    countries: "UK, Germany, Spain, Italy, France, Portugal, Netherlands, Sweden"
+  },
+  {
+    region: "Asia",
+    countries: "Japan, South Korea, India"
+  },
+  {
+    region: "Americas",
+    countries: "USA, Canada, Mexico, Brazil, Argentina"
+  }
 ];
 
 export default function PortugalPreviewPage() {
@@ -96,6 +111,16 @@ export default function PortugalPreviewPage() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="section-grid preview-feature-grid">
+        {networkCoverage.map((item) => (
+          <article key={item.region} className="feature-card preview-feature-card">
+            <p className="card-eyebrow">Network coverage</p>
+            <h2>{item.region}</h2>
+            <p>{item.countries}</p>
+          </article>
+        ))}
       </section>
 
       <section className="section-split preview-luxury-split">

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const pageStats = [
-  { label: "Published pages", value: "42", detail: "Across 18 active sites" },
+  { label: "Published pages", value: "42", detail: "Across 16 active sites" },
   { label: "Draft pages", value: "11", detail: "Waiting on translation or review" },
   { label: "Reusable blocks", value: "19", detail: "Shared sections available in the editor" },
   { label: "Updated this week", value: "6", detail: "Contact, About, Projects, and landing pages" }
@@ -31,7 +31,7 @@ const pageQueue = [
   },
   {
     title: "Contact and support",
-    site: "Korea",
+    site: "South Korea",
     status: "Published",
     locale: "Korean + English",
     note: "Includes form summary, map snippet, and coordinator contacts."
@@ -129,7 +129,7 @@ export default function PagesDashboardPage() {
           </div>
           <div className="dashboard-toolbar-meta">
             <span>Updated 12 minutes ago</span>
-            <span>18 sites in scope</span>
+            <span>16 sites in scope</span>
           </div>
         </div>
 

@@ -1,10 +1,28 @@
 import Link from "next/link";
 
 const launchSummary = [
-  { label: "Active sites", value: "18", detail: "Of 25 planned country and language variants" },
-  { label: "Published languages", value: "7", detail: "English, French, Spanish, German, Italian, Korean, Portuguese" },
+  { label: "Active sites", value: "16", detail: "Europe 8, Asia 3, Americas 5" },
+  { label: "Published languages", value: "12", detail: "English, French, German, Spanish, Italian, Portuguese, Dutch, Swedish, Japanese, Korean, Hindi, Brazilian Portuguese" },
   { label: "Drafts awaiting review", value: "14", detail: "Pages, posts, events, and banner updates" },
   { label: "Migration batches", value: "3", detail: "Legacy blog imports queued from WordPress" }
+];
+
+const regionalCoverage = [
+  {
+    region: "Europe",
+    count: "8 sites",
+    countries: "UK, Germany, Spain, Italy, France, Portugal, Netherlands, Sweden"
+  },
+  {
+    region: "Asia",
+    count: "3 sites",
+    countries: "Japan, South Korea, India"
+  },
+  {
+    region: "Americas",
+    count: "5 sites",
+    countries: "USA, Canada, Mexico, Brazil, Argentina"
+  }
 ];
 
 const workflowStages = [
@@ -26,14 +44,14 @@ const workflowStages = [
 ];
 
 const recentActivity = [
-  "Italy published a new volunteer story in Italian and English.",
-  "France scheduled a spring events carousel for the homepage.",
-  "Portugal added a new coordinator profile and contact block.",
-  "Super admin enabled a new language variant for the Canada site."
+  "Germany published a bilingual spring story and queued homepage promotion.",
+  "Japan launched a new event listing and updated the public calendar feed.",
+  "Brazil added a new coordinator profile and contact block.",
+  "Super admin enabled a new locale variant for the Sweden site."
 ];
 
 const alertItems = [
-  "Global banner: upcoming maintenance notice scheduled for April 2.",
+  "Global banner: maintenance notice scheduled for April 2 across all regions.",
   "SEO check: three translated pages need meta descriptions before release.",
   "Content ops: WordPress migration import for legacy posts is 80% complete."
 ];
@@ -55,9 +73,9 @@ export default function DashboardPage() {
           <p className="dashboard-eyebrow">Admin overview</p>
           <h1>Federated editorial operations at a glance.</h1>
           <p className="dashboard-lede">
-            This sample dashboard shows how a small federation team can supervise
-            multilingual publishing, site provisioning, editorial queues, and
-            migration progress from one place.
+            A live operations view for supervising multilingual publishing,
+            site provisioning, editorial queues, and migration progress across
+            a 16-country network.
           </p>
           <div className="dashboard-hero__actions">
             <Link className="dashboard-button dashboard-button--primary" href="/dashboard/sites">
@@ -81,11 +99,22 @@ export default function DashboardPage() {
       </section>
 
       <section className="dashboard-grid dashboard-grid--three">
+        {regionalCoverage.map((item) => (
+          <article key={item.region} className="dashboard-card">
+            <p className="dashboard-card__eyebrow">Regional coverage</p>
+            <h2>{item.region}</h2>
+            <p>{item.count}</p>
+            <p>{item.countries}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--three">
         <article className="dashboard-card">
           <p className="dashboard-card__eyebrow">System health</p>
-          <h2>Launch readiness is stable across most sites.</h2>
+          <h2>Launch readiness is stable across the network.</h2>
           <ul className="dashboard-list">
-            <li>Shared templates are deployed to all active sites.</li>
+            <li>Shared templates are deployed to all 16 active sites.</li>
             <li>Two sites need translated contact page updates before launch.</li>
             <li>Media storage is under the current quota threshold.</li>
           </ul>
@@ -131,7 +160,7 @@ export default function DashboardPage() {
 
         <article className="dashboard-card dashboard-card--accent">
           <p className="dashboard-card__eyebrow">Launch roadmap</p>
-          <h2>What this sample dashboard is designed to prove.</h2>
+          <h2>What this operations layer is designed to support.</h2>
           <ul className="dashboard-list">
             <li>Super admins can provision sites and language variants from a single control surface.</li>
             <li>Coordinators can focus on editorial content, not infrastructure.</li>

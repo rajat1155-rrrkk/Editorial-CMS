@@ -4,7 +4,7 @@ const environment = [
   {
     label: "Public app",
     value: "Vercel production",
-    detail: "18 mapped domains · edge cache enabled"
+    detail: "16 mapped domains · edge cache enabled"
   },
   {
     label: "Content API",
@@ -24,10 +24,22 @@ const environment = [
 ];
 
 const domains = [
-  { site: "Canada", domain: "canada.editorial-demo.org", status: "Verified" },
+  { site: "UK", domain: "uk.editorial-demo.org", status: "Verified" },
+  { site: "Germany", domain: "germany.editorial-demo.org", status: "Verified" },
+  { site: "Spain", domain: "spain.editorial-demo.org", status: "Review" },
+  { site: "Italy", domain: "italy.editorial-demo.org", status: "Verified" },
   { site: "France", domain: "france.editorial-demo.org", status: "Verified" },
   { site: "Portugal", domain: "portugal.editorial-demo.org", status: "Pending SSL" },
-  { site: "Korea", domain: "korea.editorial-demo.org", status: "Provisioning" }
+  { site: "Netherlands", domain: "netherlands.editorial-demo.org", status: "Verified" },
+  { site: "Sweden", domain: "sweden.editorial-demo.org", status: "Verified" },
+  { site: "Japan", domain: "japan.editorial-demo.org", status: "Review" },
+  { site: "South Korea", domain: "korea.editorial-demo.org", status: "Provisioning" },
+  { site: "India", domain: "india.editorial-demo.org", status: "Verified" },
+  { site: "USA", domain: "usa.editorial-demo.org", status: "Verified" },
+  { site: "Canada", domain: "canada.editorial-demo.org", status: "Verified" },
+  { site: "Mexico", domain: "mexico.editorial-demo.org", status: "Launching" },
+  { site: "Brazil", domain: "brazil.editorial-demo.org", status: "Verified" },
+  { site: "Argentina", domain: "argentina.editorial-demo.org", status: "Review" }
 ];
 
 const flags = [
@@ -41,7 +53,7 @@ const flags = [
 
 const settingsSnapshot = [
   { key: "Default theme", value: "Editorial White" },
-  { key: "Homepage layout", value: "Block builder v2" },
+  { key: "Homepage layout", value: "Block builder v3" },
   { key: "Default locale", value: "en" },
   { key: "Search indexing", value: "On" },
   { key: "Alert banner", value: "Network Summit 2026" },
@@ -49,7 +61,7 @@ const settingsSnapshot = [
 ];
 
 const releaseNotes = [
-  "France domain certificate renewed successfully.",
+  "UK and Germany certificates renewed successfully.",
   "India locale set updated to include Hindi content review.",
   "Two imported blog batches are waiting for image cleanup."
 ];

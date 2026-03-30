@@ -20,7 +20,7 @@ const layers = [
   {
     title: "Operational layer",
     detail:
-      "Site administration, language setup, user access, and global configuration designed for a small federation team."
+      "Site administration, language setup, user access, and global configuration designed for a distributed editorial network."
   }
 ];
 

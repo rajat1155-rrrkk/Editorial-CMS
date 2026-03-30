@@ -15,6 +15,24 @@ const previewSites = [
   }
 ];
 
+const regionalClusters = [
+  {
+    region: "Europe",
+    count: "8 sites",
+    countries: "UK, Germany, Spain, Italy, France, Portugal, Netherlands, Sweden"
+  },
+  {
+    region: "Asia",
+    count: "3 sites",
+    countries: "Japan, South Korea, India"
+  },
+  {
+    region: "Americas",
+    count: "5 sites",
+    countries: "USA, Canada, Mexico, Brazil, Argentina"
+  }
+];
+
 const previewHighlights = [
   "Public-facing homepage layout with editorial hero, featured stories, and events",
   "Country-specific content that feels like a real site generated from shared CMS data",
@@ -23,9 +41,9 @@ const previewHighlights = [
 ];
 
 const previewSignals = [
-  { value: "2", label: "Live country previews" },
-  { value: "12", label: "Reusable public homepage modules" },
-  { value: "7", label: "Launch languages across the network" }
+  { value: "16", label: "Live country sites" },
+  { value: "3", label: "Regional clusters" },
+  { value: "12", label: "Public languages" }
 ];
 
 export default function PreviewIndexPage() {
@@ -36,8 +54,8 @@ export default function PreviewIndexPage() {
         <h1>Country-site previews generated from the same editorial CMS.</h1>
         <p className="lede">
           This slice shows what the public output could feel like for each
-          national site. The pages below are intentionally static, but they are
-          structured like real homepage renders from a shared multi-site system.
+          national site. The pages below are structured as live sample
+          homepages generated from a shared multi-site system.
         </p>
         <div className="hero-actions">
           <Link href="/dashboard" className="primary-link">
@@ -64,6 +82,16 @@ export default function PreviewIndexPage() {
             <h2>{site.name}</h2>
             <p>{site.strap}</p>
           </Link>
+        ))}
+      </section>
+
+      <section className="section-grid preview-sites">
+        {regionalClusters.map((cluster) => (
+          <article key={cluster.region} className="feature-card preview-site-card">
+            <p className="card-eyebrow">{cluster.count}</p>
+            <h2>{cluster.region}</h2>
+            <p>{cluster.countries}</p>
+          </article>
         ))}
       </section>
 

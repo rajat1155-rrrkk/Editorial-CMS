@@ -5,21 +5,21 @@ const roles = [
     name: "Super Admin",
     scope: "Federation-wide",
     access: "All sites, domains, locales, alerts, and configuration",
-    people: "3 accounts",
+    people: "4 accounts",
     status: "Locked down"
   },
   {
     name: "Editor",
     scope: "One national site",
     access: "Pages, posts, events, media, and translations",
-    people: "44 accounts",
+    people: "56 accounts",
     status: "Active"
   },
   {
     name: "Coordinator",
     scope: "One site with approval workflow",
     access: "Draft creation, review queue, and profile updates",
-    people: "14 accounts",
+    people: "32 accounts",
     status: "Review only"
   }
 ];
@@ -40,8 +40,8 @@ const teamMembers = [
     note: "Scheduled a news post and approved two translated blocks."
   },
   {
-    name: "Korea coordinator desk",
-    site: "Korea",
+    name: "South Korea coordinator desk",
+    site: "South Korea",
     role: "Coordinator",
     lastSeen: "3 hours ago",
     note: "Drafted a page update and requested media review."
@@ -64,7 +64,7 @@ const permissions = [
 
 const approvalQueue = [
   "Portugal editor invite waiting on acceptance.",
-  "Korea coordinator requested media-library access.",
+  "South Korea coordinator requested media-library access.",
   "Canada locale reviewer pending approval for French workflow."
 ];
 
@@ -80,7 +80,7 @@ export default function TeamPage() {
       <section className="dashboard-hero team-hero">
         <div className="dashboard-hero__copy team-hero__copy">
           <p className="dashboard-eyebrow">Team access</p>
-          <h1>Role management for a small federation and its local editors.</h1>
+          <h1>Role management for a distributed editorial network.</h1>
           <p className="dashboard-lede">
             This slice shows access boundaries in a live product format: a small
             super-admin group, site-scoped editors, and clear approval lines for
@@ -99,7 +99,7 @@ export default function TeamPage() {
         <aside className="dashboard-hero__panel team-hero__panel" aria-label="Team summary">
           <article className="dashboard-metric">
             <p>Assigned users</p>
-            <strong>61</strong>
+            <strong>92</strong>
             <span>Across the federation and national sites</span>
           </article>
           <article className="dashboard-metric">
