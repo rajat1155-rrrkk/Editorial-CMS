@@ -1559,6 +1559,203 @@ h3,
     var(--surface);
 }
 
+.tenant-nav-shell {
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(180, 165, 132, 0.28);
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(244, 240, 229, 0.94));
+  box-shadow:
+    0 24px 68px rgba(114, 96, 56, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.tenant-nav-shell__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tenant-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.tenant-nav-brand__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #6f8f48, #98aa74);
+  color: #fffaf0;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.tenant-nav-brand__eyebrow {
+  margin: 0;
+  color: #7b785f;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.tenant-nav-brand strong,
+.tenant-nav-brand span {
+  display: block;
+}
+
+.tenant-nav-brand strong {
+  margin-top: 0.15rem;
+  color: #42552b;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.tenant-nav-brand span {
+  margin-top: 0.2rem;
+  color: #8f8a77;
+  font-size: 0.82rem;
+}
+
+.tenant-nav-shell__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.tenant-nav-shell__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(239, 243, 225, 0.92);
+  color: #4f6531;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tenant-nav-shell__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #4f6531, #8a9d67);
+  box-shadow: 0 0 0 4px rgba(111, 143, 72, 0.14);
+}
+
+.tenant-nav-shell__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6f8f48, #98aa74);
+  color: #fffaf0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 16px 28px rgba(114, 96, 56, 0.14);
+}
+
+.tenant-nav-group {
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(180, 165, 132, 0.18);
+}
+
+.tenant-nav-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.tenant-nav-group__header p {
+  margin: 0;
+  color: #7b785f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.tenant-nav-group__header span {
+  color: #9a9483;
+  font-size: 0.8rem;
+}
+
+.tenant-nav-group__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.tenant-nav-group__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(180, 165, 132, 0.24);
+  background: rgba(255, 253, 248, 0.92);
+  color: #5c5648;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.tenant-nav-group__link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(114, 143, 72, 0.22);
+  background: rgba(245, 242, 230, 0.96);
+}
+
+.tenant-nav-group__link--active {
+  border-color: transparent;
+  background: linear-gradient(135deg, #6f8f48, #98aa74);
+  color: #fffaf0;
+  box-shadow: 0 14px 26px rgba(114, 96, 56, 0.14);
+}
+
+.tenant-banner {
+  padding: 0.95rem 1.1rem;
+  border-radius: 24px;
+  border: 1px solid rgba(180, 165, 132, 0.24);
+  background: linear-gradient(135deg, rgba(255, 252, 246, 0.98), rgba(243, 240, 229, 0.96));
+  box-shadow: 0 14px 32px rgba(114, 96, 56, 0.08);
+}
+
+.tenant-banner__eyebrow {
+  margin: 0;
+  color: #7b785f;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.tenant-banner__message {
+  margin: 0.35rem 0 0;
+  color: #4d4638;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 .table-inline-link {
   color: var(--accent-deep);
   font-weight: 700;
