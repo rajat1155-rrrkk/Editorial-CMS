@@ -29,7 +29,7 @@ export const DEFAULT_CONTENT: Record<TenantSlug, TenantContent> = {
         data: {
           heading: "Designed for coordinators and contributors",
           body:
-            "This prototype shows how a national site can communicate values, news, and public information while still running on a shared system."
+            "This live demo shows how a national site can communicate values, news, and public information while still running on a shared system."
         }
       },
       {
@@ -255,7 +255,7 @@ export const DEFAULT_CONTENT: Record<TenantSlug, TenantContent> = {
         data: {
           heading: "Built for clarity, not complexity",
           body:
-            "This prototype stays intentionally lightweight while still showing a believable SaaS and CMS architecture."
+            "This live demo stays intentionally lightweight while still showing a believable SaaS and CMS architecture."
         }
       },
       {
