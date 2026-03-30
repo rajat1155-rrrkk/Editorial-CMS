@@ -1,4 +1,30 @@
-export type TenantSlug = "france" | "india" | "canada";
+export type TenantSlug =
+  | "uk"
+  | "germany"
+  | "spain"
+  | "italy"
+  | "france"
+  | "portugal"
+  | "netherlands"
+  | "sweden"
+  | "japan"
+  | "south-korea"
+  | "india"
+  | "usa"
+  | "canada"
+  | "mexico"
+  | "brazil"
+  | "argentina";
+
+export type TenantRegion = "Europe" | "Asia" | "Americas";
+
+export type TenantDirectoryEntry = {
+  slug: TenantSlug;
+  label: string;
+  region: TenantRegion;
+  displayName: string;
+  localeSummary: string;
+};
 
 export type HeroBlock = {
   id: string;
