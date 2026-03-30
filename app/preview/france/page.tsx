@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const navItems = ["Host", "Programs", "Stories", "Agenda", "Contact"];
+
 const featuredStories = [
   {
     title: "A season of local visits and shared learning",
@@ -58,6 +60,25 @@ const networkCoverage = [
 export default function FrancePreviewPage() {
   return (
     <main className="page-shell preview-country preview-france">
+      <header className="preview-masthead">
+        <div className="preview-brand">
+          <span className="preview-brand__mark">EN</span>
+          <div>
+            <strong>Editorial Network</strong>
+            <span>France site</span>
+          </div>
+        </div>
+        <nav className="preview-masthead__nav" aria-label="Public navigation">
+          {navItems.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </nav>
+        <div className="preview-masthead__actions">
+          <span className="preview-masthead__ghost">Sign in</span>
+          <span className="preview-masthead__cta">Join</span>
+        </div>
+      </header>
+
       <section className="interior-hero preview-country-hero">
         <p className="eyebrow">France preview</p>
         <h1>A lively public homepage for a national editorial site.</h1>

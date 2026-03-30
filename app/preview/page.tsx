@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const navItems = ["Sites", "Stories", "Agenda", "Resources"];
+
 const previewSites = [
   {
     name: "France",
@@ -49,6 +51,25 @@ const previewSignals = [
 export default function PreviewIndexPage() {
   return (
     <main className="page-shell preview-index">
+      <header className="preview-masthead preview-masthead--index">
+        <div className="preview-brand">
+          <span className="preview-brand__mark">EN</span>
+          <div>
+            <strong>Editorial Network</strong>
+            <span>Public sites</span>
+          </div>
+        </div>
+        <nav className="preview-masthead__nav" aria-label="Preview navigation">
+          {navItems.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </nav>
+        <div className="preview-masthead__actions">
+          <span className="preview-masthead__ghost">Workspace</span>
+          <span className="preview-masthead__cta">Launch</span>
+        </div>
+      </header>
+
       <section className="interior-hero preview-hero">
         <p className="eyebrow">Public preview</p>
         <h1>Country-site previews generated from the same editorial CMS.</h1>
