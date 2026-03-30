@@ -25,72 +25,85 @@ export function TenantBlog({ site }: { site: TenantSlug }) {
 
   const featuredPost = content.blogPosts[0];
   const secondaryPost = content.blogPosts[1];
+  const blogMetrics = [
+    { label: "Stories live", value: String(content.blogPosts.length), detail: "Fresh public posts in the archive." },
+    { label: "Featured story", value: featuredPost?.category ?? "Story", detail: featuredPost?.title ?? "Add a feature" },
+    { label: "Publishing state", value: "Active", detail: "Editorial updates sync from the shared CMS." }
+  ];
 
   return (
-    <div className="min-h-screen px-4 py-6 lg:px-8">
+    <div className="min-h-screen bg-[#f7f3eb] px-4 py-6 lg:px-8">
       <TenantNav />
       <GlobalBanner message={content.globalBanner} />
-      <section className="rounded-[32px] border border-emerald-100 bg-white/92 p-6 shadow-[0_28px_80px_rgba(16,83,56,0.08)]">
+      <section className="overflow-hidden rounded-[34px] border border-amber-100/80 bg-[linear-gradient(145deg,rgba(255,252,247,0.98),rgba(241,243,229,0.96))] p-6 shadow-[0_28px_80px_rgba(114,96,56,0.08)] lg:p-8">
         <div className="flex flex-wrap items-center gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{content.brandName}</p>
-          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-800">
-            Fresh content
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#6d8049]">{content.brandName}</p>
+          <span className="rounded-full bg-[#efe6d4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-stone-700">
+            Editorial feed
           </span>
-          <span className="text-xs font-medium text-slate-500">Sync updated a few minutes ago</span>
+          <span className="text-xs font-medium text-stone-500">Sync updated a few minutes ago</span>
         </div>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 lg:text-5xl">Blog and editorial updates</h1>
-        <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-          Recent stories, editorial notes, and reusable publishing patterns for a live public site.
-        </p>
+        <div className="mt-4 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-stone-950 lg:text-5xl">
+              Stories, notes, and announcements.
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-stone-600">
+              A calm public archive with sample content that feels live without the extra noise.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Link
+              href={`/${site}/events`}
+              className="rounded-full bg-[linear-gradient(135deg,#6f8f48,#98aa74)] px-5 py-3 text-sm font-semibold text-[#fffaf0] shadow-[0_16px_32px_rgba(111,143,72,0.2)]"
+            >
+              View events
+            </Link>
+            <Link
+              href={`/${site}`}
+              className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-stone-800 ring-1 ring-amber-200"
+            >
+              Back home
+            </Link>
+          </div>
+        </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          <article className="rounded-[24px] border border-emerald-100 bg-emerald-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">Posts</p>
-            <strong className="mt-2 block text-2xl font-semibold tracking-tight text-slate-950">{content.blogPosts.length}</strong>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Latest posts surfaced from the current site content.</p>
-          </article>
-          <article className="rounded-[24px] border border-emerald-100 bg-emerald-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">Featured</p>
-            <strong className="mt-2 block text-2xl font-semibold tracking-tight text-slate-950">
-              {featuredPost?.category ?? "Story"}
-            </strong>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{featuredPost?.title ?? "Add a featured post"}</p>
-          </article>
-          <article className="rounded-[24px] border border-emerald-100 bg-emerald-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">Update</p>
-            <strong className="mt-2 block text-2xl font-semibold tracking-tight text-slate-950">Live archive</strong>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Older imported stories remain visible for browsing and reuse.</p>
-          </article>
+          {blogMetrics.map((metric) => (
+            <article
+              key={metric.label}
+              className="rounded-[24px] border border-amber-100/80 bg-white/85 p-4 shadow-[0_16px_40px_rgba(114,96,56,0.05)]"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7a7a68]">{metric.label}</p>
+              <strong className="mt-2 block text-2xl font-semibold tracking-tight text-stone-950">{metric.value}</strong>
+              <p className="mt-2 text-sm leading-6 text-stone-600">{metric.detail}</p>
+            </article>
+          ))}
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {content.blogPosts.map((post) => (
             <article
               key={post.id}
-              className="rounded-[28px] border border-emerald-100 bg-white p-6 shadow-[0_20px_60px_rgba(16,83,56,0.06)]"
+              className="rounded-[28px] border border-amber-100/70 bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(245,241,231,0.95))] p-6 shadow-[0_20px_60px_rgba(114,96,56,0.06)]"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7a7a68]">
                 {post.category} • {post.date}
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{post.title}</h2>
-              <p className="mt-3 text-base leading-8 text-slate-600">{post.excerpt}</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-stone-950">{post.title}</h2>
+              <p className="mt-3 text-base leading-8 text-stone-600">{post.excerpt}</p>
             </article>
           ))}
         </div>
         {secondaryPost ? (
-          <div className="mt-6 rounded-[28px] border border-emerald-100 bg-white/85 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">Editorial note</p>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
+          <div className="mt-6 rounded-[28px] border border-amber-100/70 bg-white/80 p-5 shadow-[0_16px_40px_rgba(114,96,56,0.05)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7a7a68]">Editorial note</p>
+            <p className="mt-3 text-sm leading-7 text-stone-600">
               {secondaryPost.title} is queued behind the featured story and can be surfaced on the homepage or a
               campaign page without changing the underlying structure.
             </p>
           </div>
         ) : null}
-        <div className="mt-6">
-          <Link href={`/${site}`} className="rounded-full bg-emerald-900 px-5 py-3 text-sm font-semibold text-white">
-            Back to homepage
-          </Link>
-        </div>
       </section>
     </div>
   );

@@ -25,71 +25,84 @@ export function TenantEvents({ site }: { site: TenantSlug }) {
 
   const nextEvent = content.events[0];
   const followUpEvent = content.events[1];
+  const eventMetrics = [
+    { label: "Events live", value: String(content.events.length), detail: "Public dates ready for the site." },
+    { label: "Next session", value: nextEvent?.date ?? "No date", detail: nextEvent?.title ?? "Add an event" },
+    { label: "Calendar state", value: "Active", detail: "Structured data stays ready for promotion." }
+  ];
 
   return (
-    <div className="min-h-screen px-4 py-6 lg:px-8">
+    <div className="min-h-screen bg-[#f7f3eb] px-4 py-6 lg:px-8">
       <TenantNav />
       <GlobalBanner message={content.globalBanner} />
-      <section className="rounded-[32px] border border-emerald-100 bg-white/92 p-6 shadow-[0_28px_80px_rgba(16,83,56,0.08)]">
+      <section className="overflow-hidden rounded-[34px] border border-amber-100/80 bg-[linear-gradient(145deg,rgba(255,252,247,0.98),rgba(241,243,229,0.96))] p-6 shadow-[0_28px_80px_rgba(114,96,56,0.08)] lg:p-8">
         <div className="flex flex-wrap items-center gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-700">{content.brandName}</p>
-          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-800">
-            Calendar live
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#6d8049]">{content.brandName}</p>
+          <span className="rounded-full bg-[#efe6d4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-stone-700">
+            Editorial calendar
           </span>
-          <span className="text-xs font-medium text-slate-500">Updated just now</span>
+          <span className="text-xs font-medium text-stone-500">Updated just now</span>
         </div>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 lg:text-5xl">Upcoming events</h1>
-        <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-          Upcoming sessions, recurring series, and event promotions powered by the same content model as the homepage.
-        </p>
+        <div className="mt-4 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-stone-950 lg:text-5xl">
+              Upcoming events, cleanly structured.
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-stone-600">
+              A premium public calendar with sample sessions, recurring series, and calm editorial pacing.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Link
+              href={`/${site}/blog`}
+              className="rounded-full bg-[linear-gradient(135deg,#6f8f48,#98aa74)] px-5 py-3 text-sm font-semibold text-[#fffaf0] shadow-[0_16px_32px_rgba(111,143,72,0.2)]"
+            >
+              View stories
+            </Link>
+            <Link
+              href={`/${site}`}
+              className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-stone-800 ring-1 ring-amber-200"
+            >
+              Back home
+            </Link>
+          </div>
+        </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          <article className="rounded-[24px] border border-emerald-100 bg-emerald-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">Events</p>
-            <strong className="mt-2 block text-2xl font-semibold tracking-tight text-slate-950">{content.events.length}</strong>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Public calendar entries live across the site.</p>
-          </article>
-          <article className="rounded-[24px] border border-emerald-100 bg-emerald-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">Next up</p>
-            <strong className="mt-2 block text-2xl font-semibold tracking-tight text-slate-950">
-              {nextEvent?.date ?? "No date"}
-            </strong>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{nextEvent?.title ?? "Add a public event"}</p>
-          </article>
-          <article className="rounded-[24px] border border-emerald-100 bg-emerald-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">Series</p>
-            <strong className="mt-2 block text-2xl font-semibold tracking-tight text-slate-950">Recurring ready</strong>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Cloneable series keep repeat events consistent.</p>
-          </article>
+          {eventMetrics.map((metric) => (
+            <article
+              key={metric.label}
+              className="rounded-[24px] border border-amber-100/80 bg-white/85 p-4 shadow-[0_16px_40px_rgba(114,96,56,0.05)]"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7a7a68]">{metric.label}</p>
+              <strong className="mt-2 block text-2xl font-semibold tracking-tight text-stone-950">{metric.value}</strong>
+              <p className="mt-2 text-sm leading-6 text-stone-600">{metric.detail}</p>
+            </article>
+          ))}
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {content.events.map((event) => (
             <article
               key={event.id}
-              className="rounded-[28px] border border-emerald-100 bg-white p-6 shadow-[0_20px_60px_rgba(16,83,56,0.06)]"
+              className="rounded-[28px] border border-amber-100/70 bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(245,241,231,0.95))] p-6 shadow-[0_20px_60px_rgba(114,96,56,0.06)]"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">{event.date}</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{event.title}</h2>
-              <p className="mt-3 text-sm font-medium text-slate-500">{event.location}</p>
-              <p className="mt-3 text-base leading-8 text-slate-600">{event.summary}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7a7a68]">{event.date}</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-stone-950">{event.title}</h2>
+              <p className="mt-3 text-sm font-medium text-stone-500">{event.location}</p>
+              <p className="mt-3 text-base leading-8 text-stone-600">{event.summary}</p>
             </article>
           ))}
         </div>
         {followUpEvent ? (
-          <div className="mt-6 rounded-[28px] border border-emerald-100 bg-white/85 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">Scheduling note</p>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
+          <div className="mt-6 rounded-[28px] border border-amber-100/70 bg-white/80 p-5 shadow-[0_16px_40px_rgba(114,96,56,0.05)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7a7a68]">Scheduling note</p>
+            <p className="mt-3 text-sm leading-7 text-stone-600">
               {followUpEvent.title} is the next item in the queue and can be promoted to the homepage carousel or
               country event listing with the same structured fields.
             </p>
           </div>
         ) : null}
-        <div className="mt-6">
-          <Link href={`/${site}`} className="rounded-full bg-emerald-900 px-5 py-3 text-sm font-semibold text-white">
-            Back to homepage
-          </Link>
-        </div>
       </section>
     </div>
   );
