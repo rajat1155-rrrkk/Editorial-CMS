@@ -13,12 +13,97 @@ type AdminEditorProps = {
   initialSite: TenantSlug;
 };
 
+type CmsBlockType = CmsBlock["type"];
+
+function createBlock(type: CmsBlockType): CmsBlock {
+  const id = `${type}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+
+  switch (type) {
+    case "hero":
+      return {
+        id,
+        type,
+        data: {
+          eyebrow: "New section",
+          title: "Add a new hero headline",
+          description: "Use this block for the main story or a high-priority campaign message.",
+          ctaLabel: "Learn more",
+          ctaHref: "/contact"
+        }
+      };
+    case "text":
+      return {
+        id,
+        type,
+        data: {
+          heading: "New text section",
+          body: "Add editorial body copy, context, or supporting detail here."
+        }
+      };
+    case "imageText":
+      return {
+        id,
+        type,
+        data: {
+          heading: "Image with text",
+          body: "Pair an image label with supporting text to explain a program, story, or campaign.",
+          imageLabel: "Editorial image",
+          imageAlt: "Editorial image"
+        }
+      };
+    case "cta":
+      return {
+        id,
+        type,
+        data: {
+          heading: "Call to action",
+          body: "Prompt visitors to continue into a form, story, event, or membership path.",
+          buttonLabel: "Open",
+          buttonHref: "/contact"
+        }
+      };
+    case "stats":
+      return {
+        id,
+        type,
+        data: {
+          heading: "Key numbers",
+          items: [
+            { label: "Sites", value: "16" },
+            { label: "Locales", value: "24" },
+            { label: "Editors", value: "64" }
+          ]
+        }
+      };
+    case "events":
+      return {
+        id,
+        type,
+        data: {
+          heading: "Upcoming events",
+          intro: "Highlight upcoming sessions, public dates, or recurring calendar items."
+        }
+      };
+    case "map":
+      return {
+        id,
+        type,
+        data: {
+          heading: "Map overview",
+          location: "Regional network",
+          description: "Show a location cluster or regional footprint with a simple map layer."
+        }
+      };
+  }
+}
+
 export function AdminEditor({ initialSite }: AdminEditorProps) {
   const [site, setSite] = useState<TenantSlug>(initialSite);
   const [content, setContent] = useState<TenantContent | null>(null);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
   const [lastSavedAt, setLastSavedAt] = useState("09:42");
+  const [activeBlockId, setActiveBlockId] = useState<string | null>(null);
 
   const currentTenant = TENANT_DIRECTORY.find((tenant) => tenant.slug === site);
   const publicRoute = `/${site}`;
@@ -28,7 +113,9 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
       const response = await fetch(`/api/content?site=${site}`, { cache: "no-store" });
       const data = (await response.json()) as { content: TenantContent };
       const stored = window.localStorage.getItem(`cms-${site}`);
-      setContent(stored ? (JSON.parse(stored) as TenantContent) : data.content);
+      const nextContent = stored ? (JSON.parse(stored) as TenantContent) : data.content;
+      setContent(nextContent);
+      setActiveBlockId(nextContent.blocks[0]?.id ?? null);
       setNotice("");
     }
 
@@ -47,6 +134,41 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
       current.blocks[index] = nextBlock;
       return current;
     });
+  }
+
+  function moveBlock(index: number, direction: -1 | 1) {
+    updateContent((current) => {
+      const targetIndex = index + direction;
+      if (targetIndex < 0 || targetIndex >= current.blocks.length) {
+        return current;
+      }
+
+      const nextBlocks = [...current.blocks];
+      [nextBlocks[index], nextBlocks[targetIndex]] = [nextBlocks[targetIndex], nextBlocks[index]];
+      current.blocks = nextBlocks;
+      return current;
+    });
+  }
+
+  function removeBlock(index: number) {
+    updateContent((current) => {
+      const removedBlock = current.blocks[index];
+      current.blocks = current.blocks.filter((_, itemIndex) => itemIndex !== index);
+      if (activeBlockId === removedBlock?.id) {
+        setActiveBlockId(current.blocks[0]?.id ?? null);
+      }
+      return current;
+    });
+  }
+
+  function addBlock(type: CmsBlockType) {
+    const nextBlock = createBlock(type);
+    updateContent((current) => {
+      current.blocks = [...current.blocks, nextBlock];
+      return current;
+    });
+    setActiveBlockId(nextBlock.id);
+    setNotice(`${type} block added to the page.`);
   }
 
   async function save() {
@@ -135,6 +257,59 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
 
         {content ? (
           <>
+            <section className="admin-grid admin-grid--split">
+              <article className="admin-card">
+                <div className="admin-block__header">
+                  <div>
+                    <p className="admin-card__eyebrow">Content outline</p>
+                    <h2>Page structure</h2>
+                  </div>
+                  <span className="admin-block__badge">{content.blocks.length} blocks</span>
+                </div>
+
+                <div className="admin-outline-list">
+                  {content.blocks.map((block, index) => (
+                    <button
+                      key={block.id}
+                      type="button"
+                      onClick={() => setActiveBlockId(block.id)}
+                      className={`admin-outline-item ${activeBlockId === block.id ? "admin-outline-item--active" : ""}`}
+                    >
+                      <span className="admin-outline-item__index">{index + 1}</span>
+                      <span className="admin-outline-item__content">
+                        <strong>{block.type}</strong>
+                        <small>{block.id}</small>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </article>
+
+              <article className="admin-card">
+                <div className="admin-block__header">
+                  <div>
+                    <p className="admin-card__eyebrow">Add block</p>
+                    <h2>Block library</h2>
+                  </div>
+                  <span className="admin-block__badge">Reusable</span>
+                </div>
+
+                <div className="admin-library-grid">
+                  {(["hero", "text", "imageText", "cta", "stats", "events", "map"] as CmsBlockType[]).map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => addBlock(type)}
+                      className="admin-library-item"
+                    >
+                      <strong>{type}</strong>
+                      <span>Add to page</span>
+                    </button>
+                  ))}
+                </div>
+              </article>
+            </section>
+
             <section className="admin-grid admin-grid--split">
               <article className="admin-card">
                 <p className="admin-card__eyebrow">Site details</p>
@@ -236,13 +411,42 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
 
             <section className="admin-grid admin-grid--blocks">
               {content.blocks.map((block, index) => (
-                <article key={block.id} className="admin-card admin-block">
+                <article
+                  key={block.id}
+                  className={`admin-card admin-block ${activeBlockId === block.id ? "admin-block--active" : ""}`}
+                >
                   <div className="admin-block__header">
                     <div>
                       <p className="admin-card__eyebrow">Block {index + 1}</p>
                       <h2>{block.type}</h2>
                     </div>
-                    <span className="admin-block__badge">Editable</span>
+                    <div className="admin-block__toolbar">
+                      <span className="admin-block__badge">Editable</span>
+                      <button
+                        type="button"
+                        onClick={() => moveBlock(index, -1)}
+                        disabled={index === 0}
+                        className="admin-toolbar-button"
+                      >
+                        Up
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => moveBlock(index, 1)}
+                        disabled={index === content.blocks.length - 1}
+                        className="admin-toolbar-button"
+                      >
+                        Down
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => removeBlock(index)}
+                        disabled={content.blocks.length === 1}
+                        className="admin-toolbar-button admin-toolbar-button--danger"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
 
                   {block.type === "hero" ? (
