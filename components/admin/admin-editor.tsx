@@ -20,6 +20,16 @@ type HistoryEntry = {
   detail: string;
   time: string;
 };
+type RevisionEntry = {
+  id: string;
+  label: string;
+  time: string;
+  snapshot: TenantContent;
+};
+
+function timeLabel() {
+  return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
 
 function createBlock(type: CmsBlockType): CmsBlock {
   const id = `${type}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
@@ -115,6 +125,7 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
     { label: "Initial sync", detail: "Loaded tenant content into the editor workspace.", time: "09:42" },
     { label: "Publish review", detail: "The current draft still has one approval pending.", time: "09:18" }
   ]);
+  const [revisions, setRevisions] = useState<RevisionEntry[]>([]);
 
   const currentTenant = TENANT_DIRECTORY.find((tenant) => tenant.slug === site);
   const publicRoute = `/${site}`;
@@ -127,6 +138,14 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
       const nextContent = stored ? (JSON.parse(stored) as TenantContent) : data.content;
       setContent(nextContent);
       setActiveBlockId(nextContent.blocks[0]?.id ?? null);
+      setRevisions([
+        {
+          id: `initial-${site}`,
+          label: "Loaded baseline",
+          time: "09:42",
+          snapshot: clone(nextContent)
+        }
+      ]);
       setNotice("");
     }
 
@@ -164,6 +183,33 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
         {
           label: "Block reordered",
           detail: `Moved block ${index + 1} ${direction < 0 ? "up" : "down"} in the page outline.`,
+          time: "Just now"
+        },
+        ...current
+      ].slice(0, 6)
+    );
+  }
+
+  function duplicateBlock(index: number) {
+    const sourceBlock = content?.blocks[index];
+    if (!sourceBlock) return;
+
+    const duplicatedBlock = clone(sourceBlock);
+    duplicatedBlock.id = `${sourceBlock.type}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+
+    updateContent((current) => {
+      const nextBlocks = [...current.blocks];
+      nextBlocks.splice(index + 1, 0, duplicatedBlock);
+      current.blocks = nextBlocks;
+      return current;
+    });
+
+    setActiveBlockId(duplicatedBlock.id);
+    setHistory((current) =>
+      [
+        {
+          label: "Block duplicated",
+          detail: `${sourceBlock.type} block copied into the next position.`,
           time: "Just now"
         },
         ...current
@@ -213,6 +259,47 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
     );
   }
 
+  function createRevision(label: string) {
+    if (!content) return;
+
+    const revision: RevisionEntry = {
+      id: `revision-${Date.now().toString(36)}`,
+      label,
+      time: timeLabel(),
+      snapshot: clone(content)
+    };
+
+    setRevisions((current) => [revision, ...current].slice(0, 6));
+    setHistory((current) =>
+      [
+        {
+          label: "Snapshot created",
+          detail: `${label} saved as a restorable point-in-time draft.`,
+          time: "Just now"
+        },
+        ...current
+      ].slice(0, 6)
+    );
+    setNotice(`Snapshot saved: ${label}`);
+  }
+
+  function restoreRevision(revision: RevisionEntry) {
+    const restored = clone(revision.snapshot);
+    setContent(restored);
+    setActiveBlockId(restored.blocks[0]?.id ?? null);
+    setHistory((current) =>
+      [
+        {
+          label: "Revision restored",
+          detail: `Restored the draft from ${revision.label}.`,
+          time: "Just now"
+        },
+        ...current
+      ].slice(0, 6)
+    );
+    setNotice(`Restored snapshot: ${revision.label}`);
+  }
+
   async function save() {
     if (!content) return;
     setSaving(true);
@@ -231,8 +318,19 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
 
     window.localStorage.setItem(`cms-${site}`, JSON.stringify(content));
     setSaving(false);
-    setLastSavedAt(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+    setLastSavedAt(timeLabel());
     setNotice("Saved to the API store and browser fallback.");
+    setRevisions((current) =>
+      [
+        {
+          id: `save-${Date.now().toString(36)}`,
+          label: "Saved draft",
+          time: timeLabel(),
+          snapshot: clone(content)
+        },
+        ...current
+      ].slice(0, 6)
+    );
     setHistory((current) =>
       [
         {
@@ -289,6 +387,14 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
               >
                 {previewMode ? "Hide preview" : "Show preview"}
               </button>
+              <button
+                type="button"
+                onClick={() => createRevision("Manual snapshot")}
+                disabled={!content}
+                className="admin-button admin-button--secondary"
+              >
+                Save snapshot
+              </button>
             </div>
 
             {notice ? <p className="admin-lede admin-notice">{notice}</p> : null}
@@ -332,6 +438,35 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
                       <strong>{entry.label}</strong>
                       <p>{entry.detail}</p>
                       <span>{entry.time}</span>
+                    </article>
+                  ))}
+                </div>
+              </article>
+
+              <article className="admin-card">
+                <div className="admin-block__header">
+                  <div>
+                    <p className="admin-card__eyebrow">Restore points</p>
+                    <h2>Draft snapshots</h2>
+                  </div>
+                  <span className="admin-block__badge">{revisions.length} saved</span>
+                </div>
+
+                <div className="admin-history-list">
+                  {revisions.map((revision) => (
+                    <article key={revision.id} className="admin-history-item">
+                      <strong>{revision.label}</strong>
+                      <p>{revision.snapshot.blocks.length} blocks captured for this draft state.</p>
+                      <div className="admin-history-item__footer">
+                        <span>{revision.time}</span>
+                        <button
+                          type="button"
+                          onClick={() => restoreRevision(revision)}
+                          className="admin-toolbar-button"
+                        >
+                          Restore
+                        </button>
+                      </div>
                     </article>
                   ))}
                 </div>
@@ -540,6 +675,13 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
                         className="admin-toolbar-button"
                       >
                         Down
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => duplicateBlock(index)}
+                        className="admin-toolbar-button"
+                      >
+                        Duplicate
                       </button>
                       <button
                         type="button"

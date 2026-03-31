@@ -2522,6 +2522,18 @@ h3,
   font-weight: 600;
 }
 
+.admin-history-item__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.55rem;
+}
+
+.admin-history-item__footer span {
+  margin-top: 0;
+}
+
 .admin-preview-panel {
   overflow: hidden;
 }
