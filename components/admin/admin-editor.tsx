@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { TENANT_DIRECTORY } from "../../lib/cms/default-content";
 import type { CmsBlock, TenantContent, TenantSlug } from "../../lib/cms/types";
+import { BlockRenderer } from "../cms/block-renderer";
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -14,6 +15,11 @@ type AdminEditorProps = {
 };
 
 type CmsBlockType = CmsBlock["type"];
+type HistoryEntry = {
+  label: string;
+  detail: string;
+  time: string;
+};
 
 function createBlock(type: CmsBlockType): CmsBlock {
   const id = `${type}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
@@ -104,6 +110,11 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
   const [notice, setNotice] = useState("");
   const [lastSavedAt, setLastSavedAt] = useState("09:42");
   const [activeBlockId, setActiveBlockId] = useState<string | null>(null);
+  const [previewMode, setPreviewMode] = useState(false);
+  const [history, setHistory] = useState<HistoryEntry[]>([
+    { label: "Initial sync", detail: "Loaded tenant content into the editor workspace.", time: "09:42" },
+    { label: "Publish review", detail: "The current draft still has one approval pending.", time: "09:18" }
+  ]);
 
   const currentTenant = TENANT_DIRECTORY.find((tenant) => tenant.slug === site);
   const publicRoute = `/${site}`;
@@ -148,9 +159,20 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
       current.blocks = nextBlocks;
       return current;
     });
+    setHistory((current) =>
+      [
+        {
+          label: "Block reordered",
+          detail: `Moved block ${index + 1} ${direction < 0 ? "up" : "down"} in the page outline.`,
+          time: "Just now"
+        },
+        ...current
+      ].slice(0, 6)
+    );
   }
 
   function removeBlock(index: number) {
+    const removedType = content?.blocks[index]?.type ?? "block";
     updateContent((current) => {
       const removedBlock = current.blocks[index];
       current.blocks = current.blocks.filter((_, itemIndex) => itemIndex !== index);
@@ -159,6 +181,16 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
       }
       return current;
     });
+    setHistory((current) =>
+      [
+        {
+          label: "Block removed",
+          detail: `${removedType} block removed from the current draft.`,
+          time: "Just now"
+        },
+        ...current
+      ].slice(0, 6)
+    );
   }
 
   function addBlock(type: CmsBlockType) {
@@ -169,6 +201,16 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
     });
     setActiveBlockId(nextBlock.id);
     setNotice(`${type} block added to the page.`);
+    setHistory((current) =>
+      [
+        {
+          label: "Block added",
+          detail: `${type} block appended to the page structure.`,
+          time: "Just now"
+        },
+        ...current
+      ].slice(0, 6)
+    );
   }
 
   async function save() {
@@ -191,6 +233,16 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
     setSaving(false);
     setLastSavedAt(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
     setNotice("Saved to the API store and browser fallback.");
+    setHistory((current) =>
+      [
+        {
+          label: "Draft saved",
+          detail: `Saved ${content.blocks.length} blocks and current page settings for ${currentTenant?.displayName ?? site}.`,
+          time: "Just now"
+        },
+        ...current
+      ].slice(0, 6)
+    );
   }
 
   return (
@@ -230,6 +282,13 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
               <Link href={publicRoute} className="admin-button admin-button--secondary">
                 Open live site
               </Link>
+              <button
+                type="button"
+                onClick={() => setPreviewMode((value) => !value)}
+                className="admin-button admin-button--secondary"
+              >
+                {previewMode ? "Hide preview" : "Show preview"}
+              </button>
             </div>
 
             {notice ? <p className="admin-lede admin-notice">{notice}</p> : null}
@@ -258,6 +317,26 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
         {content ? (
           <>
             <section className="admin-grid admin-grid--split">
+              <article className="admin-card">
+                <div className="admin-block__header">
+                  <div>
+                    <p className="admin-card__eyebrow">Activity</p>
+                    <h2>Recent changes</h2>
+                  </div>
+                  <span className="admin-block__badge">Session</span>
+                </div>
+
+                <div className="admin-history-list">
+                  {history.map((entry) => (
+                    <article key={`${entry.label}-${entry.time}-${entry.detail}`} className="admin-history-item">
+                      <strong>{entry.label}</strong>
+                      <p>{entry.detail}</p>
+                      <span>{entry.time}</span>
+                    </article>
+                  ))}
+                </div>
+              </article>
+
               <article className="admin-card">
                 <div className="admin-block__header">
                   <div>
@@ -408,6 +487,30 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
                 </div>
               </article>
             </section>
+
+            {previewMode ? (
+              <section className="admin-card admin-preview-panel">
+                <div className="admin-block__header">
+                  <div>
+                    <p className="admin-card__eyebrow">Inline preview</p>
+                    <h2>Live page rendering</h2>
+                  </div>
+                  <span className="admin-block__badge">{publicRoute}</span>
+                </div>
+
+                <div className="admin-preview-frame">
+                  <div className="admin-preview-frame__bar">
+                    <span />
+                    <span />
+                    <span />
+                    <strong>{currentTenant?.displayName ?? site}</strong>
+                  </div>
+                  <div className="admin-preview-frame__body">
+                    <BlockRenderer blocks={content.blocks} events={content.events} />
+                  </div>
+                </div>
+              </section>
+            ) : null}
 
             <section className="admin-grid admin-grid--blocks">
               {content.blocks.map((block, index) => (
