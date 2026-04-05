@@ -35,7 +35,7 @@ export function TenantBlog({ site }: { site: TenantSlug }) {
     <div className="min-h-screen bg-[#f7f3eb] px-4 py-6 lg:px-8">
       <TenantNav />
       <GlobalBanner message={content.globalBanner} />
-      <section className="overflow-hidden rounded-[34px] border border-amber-100/80 bg-[linear-gradient(145deg,rgba(255,252,247,0.98),rgba(241,243,229,0.96))] p-6 shadow-[0_28px_80px_rgba(114,96,56,0.08)] lg:p-8">
+      <section className="tenant-content-shell tenant-content-shell--blog overflow-hidden rounded-[34px] border border-amber-100/80 bg-[linear-gradient(145deg,rgba(255,252,247,0.98),rgba(241,243,229,0.96))] p-6 shadow-[0_28px_80px_rgba(114,96,56,0.08)] lg:p-8">
         <div className="flex flex-wrap items-center gap-3">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#6d8049]">{content.brandName}</p>
           <span className="rounded-full bg-[#efe6d4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-stone-700">
@@ -55,13 +55,13 @@ export function TenantBlog({ site }: { site: TenantSlug }) {
           <div className="flex gap-3">
             <Link
               href={`/${site}/events`}
-              className="rounded-full bg-[linear-gradient(135deg,#6f8f48,#98aa74)] px-5 py-3 text-sm font-semibold text-[#fffaf0] shadow-[0_16px_32px_rgba(111,143,72,0.2)]"
+              className="tenant-content-action tenant-content-action--primary rounded-full bg-[linear-gradient(135deg,#6f8f48,#98aa74)] px-5 py-3 text-sm font-semibold text-[#fffaf0] shadow-[0_16px_32px_rgba(111,143,72,0.2)]"
             >
               View events
             </Link>
             <Link
               href={`/${site}`}
-              className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-stone-800 ring-1 ring-amber-200"
+              className="tenant-content-action tenant-content-action--secondary rounded-full bg-white px-5 py-3 text-sm font-semibold text-stone-800 ring-1 ring-amber-200"
             >
               Back home
             </Link>
@@ -72,7 +72,7 @@ export function TenantBlog({ site }: { site: TenantSlug }) {
           {blogMetrics.map((metric) => (
             <article
               key={metric.label}
-              className="rounded-[24px] border border-amber-100/80 bg-white/85 p-4 shadow-[0_16px_40px_rgba(114,96,56,0.05)]"
+              className="tenant-content-metric rounded-[24px] border border-amber-100/80 bg-white/85 p-4 shadow-[0_16px_40px_rgba(114,96,56,0.05)]"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7a7a68]">{metric.label}</p>
               <strong className="mt-2 block text-2xl font-semibold tracking-tight text-stone-950">{metric.value}</strong>
@@ -85,7 +85,7 @@ export function TenantBlog({ site }: { site: TenantSlug }) {
           {content.blogPosts.map((post) => (
             <article
               key={post.id}
-              className="rounded-[28px] border border-amber-100/70 bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(245,241,231,0.95))] p-6 shadow-[0_20px_60px_rgba(114,96,56,0.06)]"
+              className="tenant-content-card rounded-[28px] border border-amber-100/70 bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(245,241,231,0.95))] p-6 shadow-[0_20px_60px_rgba(114,96,56,0.06)]"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7a7a68]">
                 {post.category} • {post.date}
@@ -96,7 +96,7 @@ export function TenantBlog({ site }: { site: TenantSlug }) {
           ))}
         </div>
         {secondaryPost ? (
-          <div className="mt-6 rounded-[28px] border border-amber-100/70 bg-white/80 p-5 shadow-[0_16px_40px_rgba(114,96,56,0.05)]">
+          <div className="tenant-content-note mt-6 rounded-[28px] border border-amber-100/70 bg-white/80 p-5 shadow-[0_16px_40px_rgba(114,96,56,0.05)]">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7a7a68]">Editorial note</p>
             <p className="mt-3 text-sm leading-7 text-stone-600">
               {secondaryPost.title} is queued behind the featured story and can be surfaced on the homepage or a
