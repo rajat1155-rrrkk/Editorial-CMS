@@ -67,6 +67,29 @@ const releaseWindow = [
   { time: "15:00 UTC", title: "Alert sync", detail: "Network banner refresh across all active sites" }
 ];
 
+const visualPanels = [
+  {
+    tone: "soil",
+    title: "Feature launch",
+    detail: "Long-form homepage publishing and campaign pages"
+  },
+  {
+    tone: "ecology",
+    title: "Site health",
+    detail: "Editors active across regional teams and language queues"
+  },
+  {
+    tone: "sun",
+    title: "Calls to action",
+    detail: "Donation, visit, event, and contact pathways"
+  },
+  {
+    tone: "sand",
+    title: "Background blocks",
+    detail: "Warm neutral surfaces for clear hierarchy and editorial rhythm"
+  }
+];
+
 export default function Home() {
   return (
     <main className="dashboard-shell workspace-page workspace-page--minimal">
@@ -134,6 +157,28 @@ export default function Home() {
                 <strong>{item.title}</strong>
                 <span>{item.meta}</span>
               </Link>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--split workspace-live-sections">
+        <article className="dashboard-card workspace-minimal-section workspace-brand-panel">
+          <p className="dashboard-card__eyebrow">Visual direction</p>
+          <h2>Typography, colour, and space built around a calmer editorial system.</h2>
+          <p>
+            Warm paper backgrounds, soil-toned hierarchy, restrained green emphasis, and orange reserved for high-priority actions.
+          </p>
+        </article>
+
+        <article className="dashboard-card workspace-minimal-section">
+          <p className="dashboard-card__eyebrow">Colour hierarchy</p>
+          <div className="workspace-mosaic">
+            {visualPanels.map((panel) => (
+              <div key={panel.title} className={`workspace-mosaic-card workspace-mosaic-card--${panel.tone}`}>
+                <strong>{panel.title}</strong>
+                <span>{panel.detail}</span>
+              </div>
             ))}
           </div>
         </article>
