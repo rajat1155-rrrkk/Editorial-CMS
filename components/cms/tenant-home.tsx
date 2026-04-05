@@ -60,7 +60,7 @@ export function TenantHome({ site }: TenantHomeProps) {
             <div>
               <div className="flex flex-wrap items-center gap-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#6d8049]">{content.brandName}</p>
-                <span className="rounded-full bg-[#edf2df] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#4f6531]">
+                <span className="tenant-home-status rounded-full bg-[#edf2df] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#4f6531]">
                   Live site
                 </span>
                 <span className="text-xs font-medium text-stone-500">Updated just now</span>
@@ -73,7 +73,7 @@ export function TenantHome({ site }: TenantHomeProps) {
                 <button
                   type="button"
                   onClick={() => setEditMode((value) => !value)}
-                  className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                  className={`tenant-home-action tenant-home-action--secondary rounded-full px-4 py-2 text-sm font-semibold transition ${
                     editMode
                       ? "bg-stone-900 text-[#fffaf0] shadow-[0_14px_30px_rgba(76,64,38,0.2)]"
                       : "bg-white text-stone-800 ring-1 ring-amber-200 hover:bg-amber-50"
@@ -83,7 +83,7 @@ export function TenantHome({ site }: TenantHomeProps) {
                 </button>
                 <Link
                   href="/admin"
-                  className="rounded-full bg-[linear-gradient(135deg,#6f8f48,#98aa74)] px-4 py-2 text-sm font-semibold text-[#fffaf0] shadow-[0_16px_32px_rgba(114,96,56,0.14)]"
+                  className="tenant-home-action tenant-home-action--primary rounded-full bg-[linear-gradient(135deg,#6f8f48,#98aa74)] px-4 py-2 text-sm font-semibold text-[#fffaf0] shadow-[0_16px_32px_rgba(114,96,56,0.14)]"
                 >
                   Open admin
                 </Link>
@@ -94,7 +94,7 @@ export function TenantHome({ site }: TenantHomeProps) {
               {liveSignals.map((signal) => (
                 <article
                   key={signal.label}
-                  className="rounded-[24px] border border-amber-100/80 bg-[linear-gradient(180deg,rgba(255,252,247,0.96),rgba(245,242,231,0.96))] p-4 shadow-[0_16px_40px_rgba(114,96,56,0.06)]"
+                  className="tenant-home-signal rounded-[24px] border border-amber-100/80 bg-[linear-gradient(180deg,rgba(255,252,247,0.96),rgba(245,242,231,0.96))] p-4 shadow-[0_16px_40px_rgba(114,96,56,0.06)]"
                 >
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#6d8049]">{signal.label}</p>
                   <strong className="mt-2 block text-base font-semibold tracking-tight text-stone-950">
