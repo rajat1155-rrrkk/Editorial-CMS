@@ -2456,6 +2456,98 @@ h3,
   font-size: 0.8rem;
 }
 
+.admin-locale-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.admin-locale-tab {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 140px;
+  padding: 0.9rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(188, 176, 144, 0.2);
+  background: rgba(255, 251, 245, 0.9);
+  box-shadow:
+    0 16px 34px rgba(78, 69, 44, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  text-align: left;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.admin-locale-tab:hover {
+  transform: translateY(-1px);
+  border-color: rgba(111, 143, 72, 0.28);
+}
+
+.admin-locale-tab--active {
+  border-color: rgba(111, 143, 72, 0.42);
+  box-shadow:
+    0 18px 36px rgba(78, 69, 44, 0.06),
+    0 0 0 3px rgba(219, 229, 196, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.admin-locale-tab strong {
+  color: #223227;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.admin-locale-tab span {
+  color: #7b785f;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.admin-locale-panel {
+  margin-top: 1rem;
+  padding: 1rem 1.05rem;
+  border-radius: 22px;
+  border: 1px solid rgba(188, 176, 144, 0.2);
+  background: rgba(255, 251, 245, 0.9);
+  box-shadow:
+    0 16px 34px rgba(78, 69, 44, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.admin-locale-panel__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.admin-locale-panel__meta span {
+  display: block;
+  color: #7b785f;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.admin-locale-panel__meta strong {
+  display: block;
+  margin-top: 0.45rem;
+  color: #223227;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.admin-locale-panel p {
+  margin: 0;
+  color: #686458;
+  line-height: 1.6;
+}
+
 .admin-toolbar-button {
   display: inline-flex;
   align-items: center;
@@ -3021,6 +3113,7 @@ h3,
   .admin-approval-grid,
   .admin-field-grid,
   .admin-stat-grid,
+  .admin-locale-panel__meta,
   .admin-library-grid,
   .admin-grid--split,
   .admin-grid--blocks {

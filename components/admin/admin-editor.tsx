@@ -121,6 +121,7 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
   const [lastSavedAt, setLastSavedAt] = useState("09:42");
   const [activeBlockId, setActiveBlockId] = useState<string | null>(null);
   const [previewMode, setPreviewMode] = useState(false);
+  const [activeLocale, setActiveLocale] = useState("Primary");
   const [history, setHistory] = useState<HistoryEntry[]>([
     { label: "Initial sync", detail: "Loaded tenant content into the editor workspace.", time: "09:42" },
     { label: "Publish review", detail: "The current draft still has one approval pending.", time: "09:18" }
@@ -129,6 +130,12 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
 
   const currentTenant = TENANT_DIRECTORY.find((tenant) => tenant.slug === site);
   const publicRoute = `/${site}`;
+  const localeOptions = currentTenant?.localeSummary
+    ? currentTenant.localeSummary.split(" / ").map((locale, index) => ({
+        name: locale,
+        status: index === 0 ? "Live" : index === 1 ? "In review" : "Draft"
+      }))
+    : [{ name: "English", status: "Live" }];
 
   useEffect(() => {
     async function load() {
@@ -138,6 +145,7 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
       const nextContent = stored ? (JSON.parse(stored) as TenantContent) : data.content;
       setContent(nextContent);
       setActiveBlockId(nextContent.blocks[0]?.id ?? null);
+      setActiveLocale("Primary");
       setRevisions([
         {
           id: `initial-${site}`,
@@ -423,6 +431,53 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
         {content ? (
           <>
             <section className="admin-grid admin-grid--split">
+              <article className="admin-card">
+                <div className="admin-block__header">
+                  <div>
+                    <p className="admin-card__eyebrow">Locales</p>
+                    <h2>Language workspace</h2>
+                  </div>
+                  <span className="admin-block__badge">{localeOptions.length} active</span>
+                </div>
+
+                <div className="admin-locale-tabs">
+                  {localeOptions.map((locale, index) => {
+                    const key = index === 0 ? "Primary" : locale.name;
+
+                    return (
+                      <button
+                        key={locale.name}
+                        type="button"
+                        onClick={() => setActiveLocale(key)}
+                        className={`admin-locale-tab ${activeLocale === key ? "admin-locale-tab--active" : ""}`}
+                      >
+                        <strong>{locale.name}</strong>
+                        <span>{locale.status}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="admin-locale-panel">
+                  <div className="admin-locale-panel__meta">
+                    <div>
+                      <span>Current locale</span>
+                      <strong>{activeLocale === "Primary" ? localeOptions[0]?.name : activeLocale}</strong>
+                    </div>
+                    <div>
+                      <span>Status</span>
+                      <strong>
+                        {localeOptions.find((locale, index) => (index === 0 ? "Primary" : locale.name) === activeLocale)?.status ??
+                          "Draft"}
+                      </strong>
+                    </div>
+                  </div>
+                  <p>
+                    Edit copy and structure for this language variant while keeping the same shared block model and publication workflow.
+                  </p>
+                </div>
+              </article>
+
               <article className="admin-card">
                 <div className="admin-block__header">
                   <div>
