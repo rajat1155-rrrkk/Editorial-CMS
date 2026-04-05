@@ -240,7 +240,9 @@ export default function SitesPage() {
             <article key={site.name} className="sites-table__row" role="row">
               <span role="cell">{site.name}</span>
               <span role="cell">{site.domain}</span>
-              <span role="cell">{site.status}</span>
+              <span role="cell">
+                <span className="dashboard-status-pill">{site.status}</span>
+              </span>
               <span role="cell">{site.languages.join(" / ")}</span>
               <span role="cell">{site.owners}</span>
               <span role="cell">{site.updatedAt}</span>
