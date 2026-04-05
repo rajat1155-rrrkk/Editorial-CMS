@@ -80,10 +80,10 @@ export default function AlertsPage() {
             <article key={alert.title} className="dashboard-stage">
               <div className="dashboard-stage__row">
                 <h3>{alert.title}</h3>
-                <span>{alert.status}</span>
+                <span className="dashboard-status-pill">{alert.status}</span>
               </div>
               <p>{alert.copy}</p>
-              <p>{alert.audience}</p>
+              <p className="dashboard-stage__meta">{alert.audience}</p>
             </article>
           ))}
         </div>

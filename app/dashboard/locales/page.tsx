@@ -158,7 +158,9 @@ export default function LocalesPage() {
               <span role="cell">{site.site}</span>
               <span role="cell">{site.languages.join(" / ")}</span>
               <span role="cell">{site.defaultLocale}</span>
-              <span role="cell">{site.status}</span>
+              <span role="cell">
+                <span className="dashboard-status-pill">{site.status}</span>
+              </span>
             </article>
           ))}
         </div>

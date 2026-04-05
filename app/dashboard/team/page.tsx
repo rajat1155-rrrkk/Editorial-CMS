@@ -127,18 +127,20 @@ export default function TeamPage() {
       </section>
 
       <section className="dashboard-grid dashboard-grid--three team-roles">
-        {roles.map((role) => (
-          <article key={role.name} className="dashboard-card team-role">
-            <p className="dashboard-card__eyebrow">Role</p>
-            <h2>{role.name}</h2>
-            <p>{role.scope}</p>
-            <ul className="dashboard-list">
-              <li>{role.access}</li>
-              <li>{role.people}</li>
-              <li>{role.status}</li>
-            </ul>
-          </article>
-        ))}
+          {roles.map((role) => (
+            <article key={role.name} className="dashboard-card team-role">
+              <p className="dashboard-card__eyebrow">Role</p>
+              <h2>{role.name}</h2>
+              <p>{role.scope}</p>
+              <ul className="dashboard-list">
+                <li>{role.access}</li>
+                <li>{role.people}</li>
+                <li>
+                  <span className="dashboard-status-pill">{role.status}</span>
+                </li>
+              </ul>
+            </article>
+          ))}
       </section>
 
       <section className="dashboard-card team-access" id="members">
@@ -156,7 +158,9 @@ export default function TeamPage() {
             <article key={member.name} className="sites-table__row" role="row">
               <span role="cell">{member.name}</span>
               <span role="cell">{member.site}</span>
-              <span role="cell">{member.role}</span>
+              <span role="cell">
+                <span className="dashboard-status-pill">{member.role}</span>
+              </span>
               <span role="cell">{member.lastSeen}</span>
               <span role="cell">{member.note}</span>
             </article>
