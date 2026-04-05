@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const launchMetrics = [
   { label: "Active sites", value: "16", detail: "Across Europe, Asia, and the Americas" },
-  { label: "Locales live", value: "31", detail: "5 more in rollout review" },
+  { label: "Locales live", value: "31", detail: "5 more queued for review" },
   { label: "Items in review", value: "24", detail: "Pages, posts, events, and alerts" },
-  { label: "API deliveries", value: "468", detail: "Last 24 hours" }
+  { label: "API deliveries", value: "468", detail: "Content requests over the last 24 hours" }
 ];
 
 const siteRows = [
@@ -55,6 +55,18 @@ const settingsSnapshot = [
   { key: "Banner", value: "Network Summit 2026" }
 ];
 
+const editorialPulse = [
+  { label: "Homepage rollouts", value: "3", detail: "Germany, Portugal, and Mexico are staged for tomorrow morning." },
+  { label: "Copy holds", value: "2", detail: "Legal review is still blocking a policy update and one donation CTA." },
+  { label: "Media requests", value: "7", detail: "Fresh campaign images are waiting for final crops and alt text." }
+];
+
+const releaseWindow = [
+  { time: "09:00 UTC", title: "Homepage refresh", detail: "Germany and Portugal draft handoff" },
+  { time: "11:30 UTC", title: "Event publish", detail: "Japan spring visit schedule" },
+  { time: "15:00 UTC", title: "Alert sync", detail: "Network banner refresh across all active sites" }
+];
+
 export default function Home() {
   return (
     <main className="dashboard-shell workspace-page workspace-page--minimal">
@@ -62,6 +74,9 @@ export default function Home() {
         <div className="dashboard-hero__copy workspace-copy--minimal">
           <p className="dashboard-eyebrow">Editorial CMS</p>
           <h1>Editorial network operations.</h1>
+          <p className="workspace-hero-note">
+            One shared publishing workspace for national sites, multilingual updates, and public content delivery.
+          </p>
           <div className="dashboard-hero__actions">
             <Link className="dashboard-button dashboard-button--primary" href="/admin">
               Open admin
@@ -119,6 +134,34 @@ export default function Home() {
                 <strong>{item.title}</strong>
                 <span>{item.meta}</span>
               </Link>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--split workspace-live-sections">
+        <article className="dashboard-card workspace-minimal-section">
+          <p className="dashboard-card__eyebrow">Editorial pulse</p>
+          <div className="workspace-pulse-stack">
+            {editorialPulse.map((item) => (
+              <div key={item.label} className="workspace-pulse-row">
+                <p className="workspace-pulse-label">{item.label}</p>
+                <strong className="workspace-pulse-value">{item.value}</strong>
+                <p>{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="dashboard-card workspace-minimal-section">
+          <p className="dashboard-card__eyebrow">Release window</p>
+          <div className="workspace-preview-stack">
+            {releaseWindow.map((item) => (
+              <div key={item.time} className="workspace-preview-row">
+                <span className="workspace-status-pill">{item.time}</span>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </div>
             ))}
           </div>
         </article>

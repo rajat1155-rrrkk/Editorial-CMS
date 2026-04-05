@@ -24,7 +24,7 @@ export default function RootLayout({
                 <Link href="/" className="brand-mark">
                   Editorial CMS
                 </Link>
-                <p className="sidebar-copy">Multi-site publishing</p>
+                <p className="sidebar-copy">Network publishing suite</p>
               </div>
 
               <AppShellNav />
@@ -41,7 +41,7 @@ export default function RootLayout({
                 <div className="topbar-inner">
                   <div className="topbar-context">
                     <p className="topbar-kicker">Workspace</p>
-                    <strong>Editorial network operations</strong>
+                    <strong>Publishing operations</strong>
                   </div>
                   <div className="topbar-search" aria-label="Search">
                     <span>Search pages, posts, events, or sites</span>
