@@ -92,6 +92,12 @@ const serviceHealth = [
   { label: "Review workflow", value: "24 open", detail: "Approvals, translations, and publish checks." }
 ];
 
+const attentionNow = [
+  { label: "Needs review", value: "Summer homepage launch", href: "/dashboard/pages/homepage-refresh" },
+  { label: "Blocked", value: "Policy update waiting on approval", href: "/dashboard/pages" },
+  { label: "Next publish", value: "Germany homepage · 09:00 UTC", href: "/dashboard/posts" }
+];
+
 export default function Home() {
   return (
     <main className="dashboard-shell workspace-page workspace-page--minimal">
@@ -122,6 +128,18 @@ export default function Home() {
               <strong>{item.value}</strong>
               <span>{item.detail}</span>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="dashboard-card workspace-minimal-section">
+        <p className="dashboard-card__eyebrow">Needs attention now</p>
+        <div className="workspace-attention-strip">
+          {attentionNow.map((item) => (
+            <Link key={item.value} href={item.href} className="workspace-attention-item">
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </Link>
           ))}
         </div>
       </section>
