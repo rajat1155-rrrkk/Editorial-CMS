@@ -67,27 +67,29 @@ const automationRuns = [
   { time: "15:00 UTC", title: "Banner rollout", detail: "Network notice update across active domains" }
 ];
 
-const operationalPanels = [
+const activityFeed = [
   {
-    tone: "soil",
-    title: "Pages and campaigns",
-    detail: "Homepage launches, landing pages, and evergreen site content"
+    title: "Homepage refresh approved",
+    meta: "Germany · 6 min ago",
+    detail: "Release moved from review into the 09:00 UTC publish batch."
   },
   {
-    tone: "ecology",
-    title: "Posts and stories",
-    detail: "Editorial publishing queue for news, updates, and imported archives"
+    title: "Event listing synced",
+    meta: "Japan · 18 min ago",
+    detail: "Calendar payload and public route were regenerated successfully."
   },
   {
-    tone: "sun",
-    title: "Events and alerts",
-    detail: "Structured calendars, banner notices, and release scheduling"
-  },
-  {
-    tone: "sand",
-    title: "Sites and API sync",
-    detail: "Domains, locales, media, and shared delivery through the content API"
+    title: "New locale variant created",
+    meta: "Canada · 27 min ago",
+    detail: "French workflow and routing were provisioned for the campaign page."
   }
+];
+
+const serviceHealth = [
+  { label: "Content API", value: "Healthy", detail: "No failed deliveries in the last hour." },
+  { label: "Media pipeline", value: "Processing", detail: "7 assets waiting on crops or alt text." },
+  { label: "Tenant routing", value: "Stable", detail: "All mapped domains responding normally." },
+  { label: "Review workflow", value: "24 open", detail: "Approvals, translations, and publish checks." }
 ];
 
 export default function Home() {
@@ -164,21 +166,62 @@ export default function Home() {
 
       <section className="dashboard-grid dashboard-grid--split workspace-live-sections">
         <article className="dashboard-card workspace-minimal-section workspace-brand-panel">
-          <p className="dashboard-card__eyebrow">Platform status</p>
-          <h2>One operational workspace for pages, posts, events, alerts, and site delivery.</h2>
-          <p>
-            Editors manage content, reviewers clear releases, and sites stay synced across locales, domains, and public routes.
-          </p>
+          <p className="dashboard-card__eyebrow">Recent activity</p>
+          <div className="workspace-activity-feed">
+            {activityFeed.map((item) => (
+              <article key={item.title} className="workspace-activity-item">
+                <strong>{item.title}</strong>
+                <span>{item.meta}</span>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
         </article>
 
         <article className="dashboard-card workspace-minimal-section">
-          <p className="dashboard-card__eyebrow">Managed surfaces</p>
-          <div className="workspace-mosaic">
-            {operationalPanels.map((panel) => (
-              <div key={panel.title} className={`workspace-mosaic-card workspace-mosaic-card--${panel.tone}`}>
-                <strong>{panel.title}</strong>
-                <span>{panel.detail}</span>
+          <p className="dashboard-card__eyebrow">Health</p>
+          <div className="workspace-service-grid">
+            {serviceHealth.map((item) => (
+              <div key={item.label} className="workspace-service-card">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+                <p>{item.detail}</p>
               </div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section className="dashboard-grid dashboard-grid--split workspace-live-sections">
+        <article className="dashboard-card workspace-minimal-section">
+          <p className="dashboard-card__eyebrow">Managed surfaces</p>
+          <div className="workspace-surface-list">
+            {[
+              "Pages and campaigns",
+              "Posts and stories",
+              "Events and alerts",
+              "Sites, locales, and API delivery"
+            ].map((item) => (
+              <div key={item} className="workspace-surface-item">
+                <strong>{item}</strong>
+                <span>Live workflow enabled</span>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="dashboard-card workspace-minimal-section">
+          <p className="dashboard-card__eyebrow">Next actions</p>
+          <div className="workspace-queue">
+            {[
+              { title: "Open media queue", meta: "7 assets waiting · /dashboard/media", href: "/dashboard/media" },
+              { title: "Review tenant launches", meta: "3 sites in rollout · /dashboard/sites", href: "/dashboard/sites" },
+              { title: "Clear alert approvals", meta: "1 scheduled banner · /dashboard/alerts", href: "/dashboard/alerts" }
+            ].map((item) => (
+              <Link key={item.title} href={item.href} className="workspace-queue__item">
+                <strong>{item.title}</strong>
+                <span>{item.meta}</span>
+              </Link>
             ))}
           </div>
         </article>
