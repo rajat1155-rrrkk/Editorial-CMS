@@ -67,26 +67,26 @@ const releaseWindow = [
   { time: "15:00 UTC", title: "Alert sync", detail: "Network banner refresh across all active sites" }
 ];
 
-const visualPanels = [
+const operationalPanels = [
   {
     tone: "soil",
-    title: "Feature launch",
-    detail: "Long-form homepage publishing and campaign pages"
+    title: "Pages and campaigns",
+    detail: "Homepage launches, landing pages, and evergreen site content"
   },
   {
     tone: "ecology",
-    title: "Site health",
-    detail: "Editors active across regional teams and language queues"
+    title: "Posts and stories",
+    detail: "Editorial publishing queue for news, updates, and imported archives"
   },
   {
     tone: "sun",
-    title: "Calls to action",
-    detail: "Donation, visit, event, and contact pathways"
+    title: "Events and alerts",
+    detail: "Structured calendars, banner notices, and release scheduling"
   },
   {
     tone: "sand",
-    title: "Background blocks",
-    detail: "Warm neutral surfaces for clear hierarchy and editorial rhythm"
+    title: "Sites and API sync",
+    detail: "Domains, locales, media, and shared delivery through the content API"
   }
 ];
 
@@ -164,17 +164,17 @@ export default function Home() {
 
       <section className="dashboard-grid dashboard-grid--split workspace-live-sections">
         <article className="dashboard-card workspace-minimal-section workspace-brand-panel">
-          <p className="dashboard-card__eyebrow">Visual direction</p>
-          <h2>Typography, colour, and space built around a calmer editorial system.</h2>
+          <p className="dashboard-card__eyebrow">Platform status</p>
+          <h2>One operational workspace for pages, posts, events, alerts, and site delivery.</h2>
           <p>
-            Warm paper backgrounds, soil-toned hierarchy, restrained green emphasis, and orange reserved for high-priority actions.
+            Editors manage content, reviewers clear releases, and sites stay synced across locales, domains, and public routes.
           </p>
         </article>
 
         <article className="dashboard-card workspace-minimal-section">
-          <p className="dashboard-card__eyebrow">Colour hierarchy</p>
+          <p className="dashboard-card__eyebrow">Managed surfaces</p>
           <div className="workspace-mosaic">
-            {visualPanels.map((panel) => (
+            {operationalPanels.map((panel) => (
               <div key={panel.title} className={`workspace-mosaic-card workspace-mosaic-card--${panel.tone}`}>
                 <strong>{panel.title}</strong>
                 <span>{panel.detail}</span>
