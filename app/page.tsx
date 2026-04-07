@@ -46,25 +46,25 @@ const reviewQueue = [
   }
 ];
 
-const settingsSnapshot = [
-  { key: "Primary mode", value: "Multi-site" },
-  { key: "Content API", value: "/api/content" },
-  { key: "Public domains", value: "16 mapped" },
-  { key: "Media storage", value: "8.6 GB / 40 GB" },
-  { key: "Locales", value: "en, fr, de, es, it, pt, ja, ko, hi" },
-  { key: "Banner", value: "Network Summit 2026" }
+const runtimeSnapshot = [
+  { key: "Tenant mode", value: "Multi-site" },
+  { key: "Content API", value: "Healthy" },
+  { key: "Domain sync", value: "16 mapped" },
+  { key: "Media usage", value: "8.6 GB / 40 GB" },
+  { key: "Locale routing", value: "31 live variants" },
+  { key: "Global banner", value: "Scheduled" }
 ];
 
-const editorialPulse = [
-  { label: "Homepage rollouts", value: "3", detail: "Germany, Portugal, and Mexico are staged for tomorrow morning." },
-  { label: "Copy holds", value: "2", detail: "Legal review is still blocking a policy update and one donation CTA." },
-  { label: "Media requests", value: "7", detail: "Fresh campaign images are waiting for final crops and alt text." }
+const jobQueue = [
+  { label: "Queued publishes", value: "3", detail: "Germany, Portugal, and Mexico staged for the next release run." },
+  { label: "Blocked items", value: "2", detail: "One policy page and one homepage CTA are waiting on approval." },
+  { label: "Media tasks", value: "7", detail: "Alt text, crops, and asset replacements are still open." }
 ];
 
-const releaseWindow = [
-  { time: "09:00 UTC", title: "Homepage refresh", detail: "Germany and Portugal draft handoff" },
-  { time: "11:30 UTC", title: "Event publish", detail: "Japan spring visit schedule" },
-  { time: "15:00 UTC", title: "Alert sync", detail: "Network banner refresh across all active sites" }
+const automationRuns = [
+  { time: "09:00 UTC", title: "Publish batch", detail: "Germany and Portugal homepage release" },
+  { time: "11:30 UTC", title: "Event sync", detail: "Japan schedule update and listing refresh" },
+  { time: "15:00 UTC", title: "Banner rollout", detail: "Network notice update across active domains" }
 ];
 
 const operationalPanels = [
@@ -186,9 +186,9 @@ export default function Home() {
 
       <section className="dashboard-grid dashboard-grid--split workspace-live-sections">
         <article className="dashboard-card workspace-minimal-section">
-          <p className="dashboard-card__eyebrow">Editorial pulse</p>
+          <p className="dashboard-card__eyebrow">Jobs</p>
           <div className="workspace-pulse-stack">
-            {editorialPulse.map((item) => (
+            {jobQueue.map((item) => (
               <div key={item.label} className="workspace-pulse-row">
                 <p className="workspace-pulse-label">{item.label}</p>
                 <strong className="workspace-pulse-value">{item.value}</strong>
@@ -199,9 +199,9 @@ export default function Home() {
         </article>
 
         <article className="dashboard-card workspace-minimal-section">
-          <p className="dashboard-card__eyebrow">Release window</p>
+          <p className="dashboard-card__eyebrow">Automation</p>
           <div className="workspace-preview-stack">
-            {releaseWindow.map((item) => (
+            {automationRuns.map((item) => (
               <div key={item.time} className="workspace-preview-row">
                 <span className="workspace-status-pill">{item.time}</span>
                 <h3>{item.title}</h3>
@@ -213,9 +213,9 @@ export default function Home() {
       </section>
 
       <section className="dashboard-card workspace-minimal-section">
-        <p className="dashboard-card__eyebrow">Settings snapshot</p>
+        <p className="dashboard-card__eyebrow">Runtime</p>
         <div className="workspace-settings-grid">
-          {settingsSnapshot.map((item) => (
+          {runtimeSnapshot.map((item) => (
             <div key={item.key} className="workspace-setting">
               <span>{item.key}</span>
               <strong>{item.value}</strong>
