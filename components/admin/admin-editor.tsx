@@ -405,7 +405,7 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
               </button>
             </div>
 
-            {notice ? <p className="admin-lede admin-notice">{notice}</p> : null}
+            {notice ? <p className="admin-lede admin-notice admin-notice--success">{notice}</p> : null}
           </div>
 
           <aside className="admin-meta" aria-label="Editor state">
@@ -1087,7 +1087,7 @@ export function AdminEditor({ initialSite }: AdminEditorProps) {
             </section>
           </>
         ) : (
-          <div className="admin-card">Loading tenant content...</div>
+          <div className="admin-card admin-state-card">Loading tenant content...</div>
         )}
       </div>
     </main>
